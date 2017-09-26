@@ -10,8 +10,14 @@ const inputDriverFactory = ({element, wrapper, component}) => {
 
   return {
     trigger: (trigger, event) => ReactTestUtils.Simulate[trigger](input, event),
-    focus: () => input.focus(),
-    blur: () => ReactTestUtils.Simulate.blur(input),
+    focus: () => {
+      input.focus();
+      ReactTestUtils.Simulate.focus(input);
+    },
+    blur: () => {
+      input.blur();
+      ReactTestUtils.Simulate.blur(input);
+    },
     keyDown: key => ReactTestUtils.Simulate.keyDown(input, {key}),
     clickClear: () => ReactTestUtils.Simulate.click(clearButton),
     enterText: text => ReactTestUtils.Simulate.change(input, {target: {value: text}}),
@@ -33,6 +39,7 @@ const inputDriverFactory = ({element, wrapper, component}) => {
     hasSuffixesClass: () => element.querySelectorAll(`.${styles.input}.${styles.withSuffixes}`).length === 1,
     prefixComponentExists: style => !!element.querySelector(`.${styles.prefix} ${style}`),
     suffixComponentExists: style => !!element.querySelector(`.${styles.suffix} ${style}`),
+    isMenuArrowLast: () => element.querySelectorAll(`.${styles.suffixes} .${styles.suffix}:last-child > .${styles.menuArrow}`).length === 1,
     hasExclamation: () => !!element.querySelector(`.${styles.exclamation}`),
     hasHelp: () => !!element.querySelector(`.${styles.help}`),
     hasError: () => hasCssState(element, styles, {hasError: true}),
@@ -52,6 +59,8 @@ const inputDriverFactory = ({element, wrapper, component}) => {
     isFocus: () => document.activeElement === input,
     exists: () => !!(element && element.querySelector('input')),
     hasIconLeft: () => !!element.querySelectorAll(`.${styles.prefix}`),
+    startComposing: () => ReactTestUtils.Simulate.compositionStart(input),
+    endComposing: () => ReactTestUtils.Simulate.compositionEnd(input),
     setProps: props => {
       const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
       ReactDOM.render(<div ref={r => element = r}>{ClonedWithProps}</div>, wrapper);

@@ -35,6 +35,7 @@ function loadStories() {
   require('../stories/Tag');
   require('../stories/TimeInput');
   require('../stories/ToggleSwitch');
+  require('../stories/ColorPicker');
   // require('../stories/Tooltip/Core');
   require('../stories/Tooltip_New/Core');
 
@@ -84,5 +85,8 @@ function loadStories() {
 configure(loadStories, module);
 
 setOptions({
-  showDownPanel: false
+  showDownPanel: false,
+  name: 'wix-style-react',
+  url: 'https://github.com/wix/wix-style-react',
+  sidebarAnimations: true,
 });

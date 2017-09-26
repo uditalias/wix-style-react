@@ -12,6 +12,7 @@
     "*.js"
   ],
   "scripts": {
+    "pretest": "npm run lint",
     "test": "npm run test:unit && npm run test:e2e",
     "test:unit": "yoshi test --jest",
     "test:e2e": "npm run build-e2e-storybook && npm run start-e2e-tests && npm run clean-e2e-files",
@@ -94,7 +95,7 @@
   "dependencies": {
     "bootstrap-sass": "^3.3.7",
     "classnames": "^2.2.5",
-    "color": "^1.0.3",
+    "color": "^2.0.0",
     "concurrently": "^3.4.0",
     "deep-eql": "^3.0.0",
     "difference": "^1.0.2",
