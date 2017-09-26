@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import tooltipDriverFactory from './Tooltip.driver';
-import Tooltip from './Tooltip';
-import TooltipContent from './TooltipContent';
+import Tooltip from './index';
+import TooltipContent from './StylableTooltipContent';
 import {createDriverFactory} from '../test-common';
 import {buttonTestkitFactory, tooltipTestkitFactory} from '../../testkit';
 import {tooltipTestkitFactory as enzymeTooltipTestkitFactory} from '../../testkit/enzyme';

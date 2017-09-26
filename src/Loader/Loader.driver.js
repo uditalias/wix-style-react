@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Loader from '../Loader';
+import Loader from './index';
 
 const loaderDriverFactory = ({element, wrapper}) => {
   const isClassExists = (element, className) => !!element && element.className.indexOf(className) !== -1;

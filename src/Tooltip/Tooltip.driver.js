@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import ReactDOM from 'react-dom';
-import Tooltip from './Tooltip';
+import Tooltip from './index';
 import last from 'lodash/last';
 
 const arrowDirectionToPlacement = {

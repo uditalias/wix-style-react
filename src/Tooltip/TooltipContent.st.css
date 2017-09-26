@@ -1,0 +1,151 @@
+@namespace "TooltipContent";
+
+:import {
+    -st-from: "../common.st.css";
+    -st-named: D10, D80, R00;
+}
+
+:import {
+    -st-from: "../Typography/typography-mixins.js";
+    -st-named: FontRoman;
+}
+
+:vars {
+    zIndex: 2000;
+    varFontSize: 14px;
+    varLineHeight: 1.29;
+    varPadding: 12px 24px;
+    varBorderRadius: 8px;
+    shadowColor: rgba(0, 0, 0, 0.2);
+    shadowColorArrow: rgba(0, 0, 0, .1);
+    shadow: 0 6px 6px 0 rgba(22, 45, 60, 0.06), 0 0 18px 0 rgba(22, 45, 60, 0.12);
+    arrowSize: 10px;
+}
+
+.root {
+    position: absolute;
+    z-index: value(zIndex);
+}
+
+@keyframes fadeIn-animation {
+    from {
+        opacity: .85;
+        transform: scale(.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.fadeIn {
+    animation: fadeIn-animation .3s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+@keyframes bounceVertically {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes bounceHorizontally {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(-10px); }
+    100% { transform: translateX(0); }
+}
+
+.bounce-on-top, .bounce-on-bottom {
+    animation: bounceVertically 1s ease infinite;
+}
+
+.bounce-on-left, .bounce-on-right {
+    animation: bounceHorizontally 1s ease infinite;
+}
+
+.bounce-on-top:hover,
+.bounce-on-bottom:hover,
+.bounce-on-left:hover,
+.bounce-on-right:hover {
+    animation-play-state: paused;
+    -webkit-animation-play-state: paused;
+    -moz-animation-play-state: paused;
+    -o-animation-play-state: paused;
+}
+
+.tooltip {
+    -st-mixin: FontRoman;
+    position: relative;
+    display: inline-block;
+    border-radius: value(varBorderRadius);
+    padding: value(varPadding);
+    font-size: value(varFontSize);
+    line-height: value(varLineHeight);
+    box-shadow: value(shadow);
+    word-wrap: break-word;
+    -webkit-font-smoothing: antialiased;
+}
+
+.tooltip.light {
+    color: value(D10);
+    background: value(D80);
+}
+
+.tooltip.dark {
+    color: value(D80);
+    background: value(D10);
+}
+
+.tooltip.error {
+    color: white;
+    background: value(R00);
+}
+
+.tooltip.normal {
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
+}
+
+.tooltip.large {
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+}
+
+.arrow {
+    position: absolute;
+    height: value(arrowSize);
+    width: value(arrowSize);
+    transform: rotateZ(45deg);
+    background: inherit;
+}
+
+.arrow.bottom, .arrow.top {
+    left: 50%;
+    margin-left: calc((-1 * value(arrowSize)) / 2);
+}
+
+.arrow.bottom {
+    bottom: -4px;
+    box-shadow: 3px 3px 6px value(shadowColorArrow);
+}
+
+.arrow.top {
+    top: -4px;
+    box-shadow: -3px -3px 6px value(shadowColorArrow);
+}
+
+.arrow.left, .arrow.right {
+    top: 50%;
+    margin-top: -5px;
+}
+
+.arrow.right {
+    right: -5px;
+    box-shadow: 3px -3px 6px value(shadowColorArrow);
+}
+
+.arrow.left {
+    left: -5px;
+    box-shadow: -3px 3px 6px value(shadowColorArrow);
+}

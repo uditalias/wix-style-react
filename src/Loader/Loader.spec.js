@@ -1,5 +1,5 @@
 import React from 'react';
-import Loader from './Loader';
+import Loader from './index';
 import loaderDriverFactory from './Loader.driver';
 import {createDriverFactory} from '../test-common';
 import {loaderTestkitFactory} from '../../testkit';
