@@ -14,6 +14,7 @@ function loadStories() {
   require('../stories/ButtonLayout');
   require('../stories/ButtonSelection');
   require('../stories/Checkbox');
+  require('../stories/ColorPicker');
   require('../stories/DataTable');
   require('../stories/DatePicker');
   require('../stories/Dropdown');
@@ -84,5 +85,8 @@ function loadStories() {
 configure(loadStories, module);
 
 setOptions({
-  showDownPanel: false
+  showDownPanel: false,
+  name: 'wix-style-react',
+  url: 'https://github.com/wix/wix-style-react',
+  sidebarAnimations: true,
 });

@@ -7,17 +7,33 @@ import moment from 'moment';
 import Input from '../Input';
 import styles from './TimeInput.scss';
 
+/**
+  * An uncontrolled time input component with a stepper and am/pm support
+  */
 export default class extends Component {
   static displayName = 'TimePicker'
 
   static propTypes = {
-    defaultValue: PropTypes.object,
-    onChange: PropTypes.func,
-    rtl: PropTypes.bool,
-    style: PropTypes.object,
-    disableAmPm: PropTypes.bool,
+    /** Should time be shown as "--:--" when disabled */
+    dashesWhenDisabled: PropTypes.bool,
     dataHook: PropTypes.string,
+
+    /** The control's starting time */
+    defaultValue: PropTypes.object,
+
+    /** 24h mode  */
+    disableAmPm: PropTypes.bool,
+
+    /** Is disabled  */
     disabled: PropTypes.bool,
+
+    /** Called upon blur */
+    onChange: PropTypes.func,
+
+    /** Display in RTL  */
+    rtl: PropTypes.bool,
+
+    style: PropTypes.object,
   }
 
   static defaultProps = {
@@ -26,6 +42,7 @@ export default class extends Component {
     style: {},
     disableAmPm: false,
     disabled: false,
+    dashesWhenDisabled: false,
   }
 
   constructor(props) {
@@ -150,8 +167,12 @@ export default class extends Component {
     this.updateDate({time: this.state.text});
   }
 
-  handleInputChange = ({target}) =>
-    this.setState({text: target.value})
+  handleInputChange = ({target}) => {
+    if (this.props.disabled && this.props.dashesWhenDisabled) {
+      return;
+    }
+    return this.setState({text: target.value});
+  }
 
   handleHover = hover =>
     this.setState({hover})
@@ -163,6 +184,10 @@ export default class extends Component {
     this.timeStep(1)
 
   handleInputBlur = ({target}) => {
+    if (this.props.disabled && this.props.dashesWhenDisabled) {
+      return;
+    }
+
     const caretIdx = target.selectionEnd || 0;
     let lastFocusedTimeUnit;
 
@@ -175,6 +200,8 @@ export default class extends Component {
   }
 
   renderTimeTextbox() {
+    const text = this.props.disabled && this.props.dashesWhenDisabled ? '-- : --' : this.state.text;
+
     const suffix = (
       <Input.Group>
         {this.state.ampmMode &&
@@ -199,7 +226,7 @@ export default class extends Component {
       <div className={styles.input}>
         <Input
           ref="input"
-          value={this.state.text}
+          value={text}
           onFocus={this.handleFocus}
           onChange={this.handleInputChange}
           onBlur={this.handleInputBlur}
