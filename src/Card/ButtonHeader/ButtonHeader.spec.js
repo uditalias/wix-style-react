@@ -2,7 +2,7 @@ import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import buttonHeaderDriverFactory from './ButtonHeader.driver';
 import {createDriverFactory} from '../../test-common';
-import ButtonHeader from './ButtonHeader';
+import ButtonHeader from './index';
 import {buttonTestkitFactory, buttonHeaderTestkitFactory} from '../../../testkit';
 import {buttonHeaderTestkitFactory as enzymeButtonHeaderTestkitFactory} from '../../../testkit/enzyme';
 import {mount} from 'enzyme';

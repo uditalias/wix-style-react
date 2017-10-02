@@ -2,7 +2,7 @@ import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import collapsedHeaderDriverFactory from './CollapsedHeader.driver';
 import {createDriverFactory} from '../../test-common';
-import CollapsedHeader from './CollapsedHeader';
+import CollapsedHeader from './index';
 import {collapsedHeaderTestkitFactory} from '../../../testkit';
 import {collapsedHeaderTestkitFactory as enzymeCollapsedHeaderTestkitFactory} from '../../../testkit/enzyme';
 import {mount} from 'enzyme';

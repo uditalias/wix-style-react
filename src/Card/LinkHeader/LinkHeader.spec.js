@@ -2,7 +2,7 @@ import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import linkHeaderDriverFactory from './LinkHeader.driver';
 import {createDriverFactory} from '../../test-common';
-import LinkHeader from './LinkHeader';
+import LinkHeader from './index';
 import {linkHeaderTestkitFactory, textLinkTestkitFactory} from '../../../testkit';
 import {linkHeaderTestkitFactory as enzymeButtonHeaderTestkitFactory} from '../../../testkit/enzyme';
 import {mount} from 'enzyme';

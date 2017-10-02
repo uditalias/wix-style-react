@@ -1,0 +1,17 @@
+@namespace "Card";
+
+:import {
+    -st-from: "../common.st.css";
+    -st-named: D80;
+}
+
+.root {
+    -st-states: stretchVertically;
+    background: value(D80);
+    border-radius: 8px;
+}
+
+.root:stretchVertically {
+    height: 100%;
+    flex-grow: 1;
+}

@@ -1,0 +1,35 @@
+@namespace "Header";
+
+:import {
+    -st-from: "../../common.st.css";
+    -st-named: D70;
+}
+
+:import {
+    -st-from: "../../Typography/typography-mixins.js";
+    -st-named: Typography;
+}
+
+.root {
+    -st-states: withDivider;
+    display: flex;
+    justify-content: space-between;
+    padding: 27px 30px 26px;
+}
+
+.root:withDivider {
+    border-bottom: 1px solid value(D70);
+}
+
+.container {
+    flex-grow: 1;
+}
+
+.title {
+    -st-mixin: Typography(h, 2);
+    line-height: 1.2;
+}
+
+.subtitle {
+    -st-mixin: Typography(t, 1, 1);
+}

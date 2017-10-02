@@ -1,0 +1,28 @@
+@namespace "LinkHeader";
+
+:import {
+    -st-from: "../Header/Header.st.css";
+    -st-default: Header;
+}
+
+.root {}
+
+.headerOnlyTitle {
+    -st-extend: root, Header;
+    display: flex;
+    justify-content: space-between;
+}
+
+.headerOnlyTitle .link {
+    position: relative;
+    text-align: right;
+    top: 2px;
+}
+
+.headerTitleSubtitle {
+    -st-extend: headerOnlyTitle;
+}
+
+.headerTitleSubtitle .link {
+    top: 13px;
+}
