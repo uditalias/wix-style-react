@@ -6,7 +6,7 @@ import {createDriverFactory} from '../test-common';
 import {notificationTestkitFactory} from '../../testkit';
 import {notificationTestkitFactory as enzymeNotificationTestkitFactory, buttonTestkitFactory as enzymeButtonTestkitFactory} from '../../testkit/enzyme';
 
-import Notification from './Notification';
+import Notification from './index';
 import Button from '../../src/Button';
 
 const renderNotificationWithProps = (props = {}) => (

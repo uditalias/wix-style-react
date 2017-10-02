@@ -1,0 +1,161 @@
+@namespace "Notification";
+
+:import {
+    -st-from: "../common.st.css";
+    -st-named: B20, R20, G20, Y10, P20;
+}
+
+:vars {
+    easeOutQuint: cubic-bezier(0.23, 1, 0.32, 1);
+    easeInOutSine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+.root {
+    position: relative;
+}
+
+.notificationWrapper {
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notificationWrapper .contentWrapper {
+    flex: 1 0 auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notificationWrapper .contentWrapper .labelWrapper {
+    margin-right: 12px;
+}
+
+.notificationWrapper .closeButtonWrapper {
+    margin-right: 12px;
+}
+
+/*Position*/
+
+.relativePosition {
+    position: relative;
+    width: 100%;
+}
+
+.absolutePosition {
+    position: absolute;
+    right: 0;
+    left: 0;
+}
+
+.fixedPosition {
+    position: fixed;
+    right: 0;
+    width: 100%;
+    top: 0;
+}
+
+/*Theme*/
+.standardTheme {
+    background-color: value(B20);
+}
+
+.errorTheme {
+    background-color: value(R20);
+}
+
+.successTheme {
+    background-color: value(G20);
+}
+
+.warningTheme {
+    background-color: value(Y10);
+}
+
+.premiumTheme {
+    background-color: value(P20);
+}
+
+/*Size*/
+
+.smallSize {
+    height: 42px;
+}
+
+.bigSize {
+    height: 54px;
+}
+
+/*Animations*/
+
+.notificationAnimationEnter {
+    transition: all 0.4s cubic-bezier(0.895, 0.03, 0.685, 0.22);
+    /*transition: all 0.4s value(easeOutQuint); //TODO - This one doesn't look good*/
+    max-height: 0;
+}
+
+.notificationAnimationEnter .labelWrapper {
+    transition: all 0.4s value(easeOutQuint) 0.1s;
+    opacity: 0;
+    margin-top: -70px;
+}
+
+.notificationAnimationEnter .ctaButtonWrapper {
+    transition: all 0.16s value(easeOutQuint) 0.2s;
+    transform: scale(0.6);
+    opacity: 0.5;
+}
+
+.notificationAnimationEnterActive {
+    max-height: 500px;
+}
+
+.notificationAnimationEnterActive .labelWrapper {
+    opacity: 1;
+    margin-top: 0;
+}
+
+.notificationAnimationEnterActive .ctaButtonWrapper {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.notificationAnimationLeave {
+    max-height: 500px;
+}
+
+.notificationAnimationLeave .labelWrapper {
+    opacity: 1;
+    margin-top: 0;
+}
+
+.notificationAnimationLeave .ctaButtonWrapper {
+    opacity: 1;
+}
+
+.notificationAnimationLeave .closeButtonWrapper {
+    opacity: 1;
+}
+
+.notificationAnimationLeaveActive {
+    transition: all 0.25s value(easeInOutSine) 0.1s;
+    max-height: 0;
+}
+
+.notificationAnimationLeaveActive .labelWrapper {
+    transition: all 0.25s value(easeInOutSine);
+    opacity: 0.5;
+    margin-top: -70px;
+}
+
+.notificationAnimationLeaveActive .ctaButtonWrapper {
+    transition: all 0.12s value(easeInOutSine);
+    opacity: 0;
+}
+
+.notificationAnimationLeaveActive .closeButtonWrapper {
+    opacity: 0;
+}
