@@ -1,12 +1,12 @@
-# Wix Style - React
+<h1 style="text-align: center;">
+    <a href="https://wix.github.com/wix-style-react">
+        <img src="https://raw.githubusercontent.com/wix/wix-style-react/master/.storybook/logo.svg?sanitize=true" alt="Wix Style React" width="300">
+    </a>
+</h1>
 
-__Wix Style__ is a common name for web UI designed by Wix UX guild.
+`wix-style-react` is a collection of [React](https://facebook.github.io/react/) components that conform to Wix Style created by Wix UX guild.
 
-`wix-style-react` is a node module containing implementation of __Wix Style__ in [React](https://facebook.github.io/react/).
-
-##### [Demo](https://wix.github.io/wix-style-react)
-##### [Source](https://github.com/wix/wix-style-react)
-
+#### [Demo](https://wix.github.io/wix-style-react) | [Source](https://github.com/wix/wix-style-react)
 
 ## Setup
 
