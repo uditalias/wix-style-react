@@ -14,7 +14,8 @@ import styles from './Dropdown.st.css';
   const namespace = styles.$stylesheet.namespace.toLowerCase();
   const styleState = {
     noBorder: props.noBorder,
-    noRightBorderRadius: props.noRightBorderRadius
+    noRightBorderRadius: props.noRightBorderRadius,
+    noLeftBorderRadius: props.noLeftBorderRadius
   };
 
   Object.keys(styleState).forEach(stateName => {

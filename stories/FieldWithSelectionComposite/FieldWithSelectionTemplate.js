@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import reactElementToJSXString from 'react-element-to-jsx-string';
 
-import FieldWithSelection from '../../src/Composite/FieldWithSelectionComposite/FieldWithSelectionComposite';
+import FieldWithSelection from '../../src/Composite/FieldWithSelectionComposite';
 import Input from '../../src/Input';
 import Checkbox from '../../src/Checkbox';
 import Label from '../../src/Label';

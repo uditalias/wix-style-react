@@ -51,6 +51,7 @@ export default class InputWithOptions extends WixComponent {
 
     this._onSelect = this._onSelect.bind(this);
     this._onFocus = this._onFocus.bind(this);
+    this._onBlur = this._onBlur.bind(this);
     this._onChange = this._onChange.bind(this);
     this._onKeyDown = this._onKeyDown.bind(this);
     this.focus = this.focus.bind(this);
@@ -62,6 +63,11 @@ export default class InputWithOptions extends WixComponent {
     this._renderDropdownLayout = this._renderDropdownLayout.bind(this);
     this._onInputClicked = this._onInputClicked.bind(this);
     this.closeOnSelect = this.closeOnSelect.bind(this);
+    this.onCompositionChange = this.onCompositionChange.bind(this);
+  }
+
+  onCompositionChange(isComposing) {
+    this.setState({isComposing});
   }
 
   onClickOutside() {
@@ -78,7 +84,9 @@ export default class InputWithOptions extends WixComponent {
       theme: this.props.theme,
       onChange: this._onChange,
       onInputClicked: this._onInputClicked,
-      onFocus: this.showOptions
+      onFocus: this._onFocus,
+      onBlur: this._onBlur,
+      onCompositionChange: this.onCompositionChange,
     });
   }
 
@@ -98,6 +106,7 @@ export default class InputWithOptions extends WixComponent {
           visible={this.state.showOptions}
           onClose={this.hideOptions}
           onSelect={this._onSelect}
+          isComposing={this.state.isComposing}
           />
       </div>
     );
@@ -108,7 +117,7 @@ export default class InputWithOptions extends WixComponent {
     return (
       <div>
         {dropDirectionUp ? this._renderDropdownLayout() : null}
-        <div onKeyDown={this._onKeyDown} onFocus={this._onFocus} className="inputWrapper">
+        <div onKeyDown={this._onKeyDown} className="inputWrapper">
           {this.renderInput()}
         </div>
         {!dropDirectionUp ? this._renderDropdownLayout() : null}
@@ -117,8 +126,12 @@ export default class InputWithOptions extends WixComponent {
   }
 
   hideOptions() {
-    this.setState({showOptions: false});
-    this.input.blur();
+    if (this.state.showOptions) {
+      this.setState({showOptions: false});
+      if (this._focused) {
+        this.input.blur();
+      }
+    }
   }
 
   showOptions() {
@@ -130,6 +143,10 @@ export default class InputWithOptions extends WixComponent {
   }
 
   _onManuallyInput(inputValue) {
+    if (this.state.isComposing) {
+      return;
+    }
+
     inputValue = inputValue.trim();
     if (this.closeOnSelect()) {
       this.hideOptions();
@@ -181,10 +198,18 @@ export default class InputWithOptions extends WixComponent {
     if (this.props.disabled) {
       return;
     }
+    this._focused = true;
     this.setState({isEditing: false});
     this.showOptions();
     if (this.props.onFocus) {
       this.props.onFocus();
+    }
+  }
+
+  _onBlur(e) {
+    this._focused = false;
+    if (this.props.onBlur) {
+      this.props.onBlur(e);
     }
   }
 

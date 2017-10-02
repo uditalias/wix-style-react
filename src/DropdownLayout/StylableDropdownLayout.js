@@ -122,7 +122,7 @@ export default class DropdownLayout extends WixComponent {
   }
 
   _onKeyDown(event) {
-    if (!this.props.visible) {
+    if (!this.props.visible || this.props.isComposing) {
       return false;
     }
 

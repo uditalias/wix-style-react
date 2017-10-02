@@ -1,5 +1,5 @@
 import React from 'react';
-import FieldWithSelectionComposite from './FieldWithSelectionComposite';
+import FieldWithSelectionComposite from './index';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import ReactTestUtils from 'react-dom/test-utils';

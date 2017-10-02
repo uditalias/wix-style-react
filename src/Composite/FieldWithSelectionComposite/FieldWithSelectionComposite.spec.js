@@ -1,5 +1,5 @@
 import React from 'react';
-import FieldWithSelectionComposite from './FieldWithSelectionComposite';
+import FieldWithSelectionComposite from './index';
 import Label from '../../Label';
 import Input from '../../Input';
 import InputArea from '../../InputArea';

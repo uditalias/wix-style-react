@@ -18,8 +18,15 @@
 
 .body {
     -st-mixin: FontLight;
-    padding: 36px 30px 42px 30px;
     color: value(paletteD2);
     font-size: 16px;
     line-height: 24px;
+}
+
+.noPadding {
+    padding: 0;
+}
+
+.withPadding {
+    padding: 36px 30px 42px 30px;
 }

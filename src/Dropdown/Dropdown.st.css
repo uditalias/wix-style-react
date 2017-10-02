@@ -6,7 +6,7 @@
 }
 
 .root {
-    -st-states: noBorder, noRightBorderRadius;
+    -st-states: noBorder, noRightBorderRadius, noLeftBorderRadius;
     -st-extends: InputWithOptions;
 }
 
@@ -25,4 +25,9 @@
     /*border-top-left-radius: 0;*/
     border-bottom-right-radius: 0;
     border-top-right-radius: 0;
+}
+
+.root:noLeftBorderRadius::inputWrapper > div {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
 }

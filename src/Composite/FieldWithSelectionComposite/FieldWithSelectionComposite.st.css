@@ -1,0 +1,66 @@
+@namespace "FieldWithSelectionComposite";
+
+:import {
+    -st-from: "../../common.st.css";
+    -st-named: D70, D80, B30, B50, GR20, R10;
+}
+
+.root {}
+
+.label {
+    margin-bottom: 6px;
+    width: 100%;
+}
+
+.inputs {
+    -st-states: focused, error, disabled;
+    display: flex;
+    align-items: center;
+    background: value(B50);
+    box-sizing: border-box;
+    border-radius: 6px;
+    border: solid 1px value(B30);
+}
+
+.inputs > div:first-child {
+    flex-grow: 1;
+    border-top: none;
+    border-bottom: none;
+    border-left: none;
+    border-right: solid 1px value(B30) !important;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.inputs:disabled > div:first-child {
+    border-right: solid 1px value(GR20);
+}
+
+.inputs > div:last-child {
+    padding: 5px 12px;
+}
+
+.inputs.dropdown {
+    background: value(D80);
+}
+
+.inputs.dropdown > div:last-child {
+    padding: 0;
+}
+
+.inputs.radiogroup > div:last-child {
+    padding: 6px 7px;
+}
+
+.inputs:focused {
+    border: solid #6eb7fd 1px;
+}
+
+.inputs:error {
+    border: solid value(R10) 1px;
+}
+
+.inputs:disabled {
+    border: solid 1px value(GR20);
+    background: value(D70);
+}

@@ -24,14 +24,16 @@ export default class MessageBoxFunctionalLayout extends WixComponent {
     buttonsHeight: PropTypes.string,
     closeButton: PropTypes.bool,
     disableCancel: PropTypes.bool,
-    disableConfirmation: PropTypes.bool
+    disableConfirmation: PropTypes.bool,
+    noBodyPadding: PropTypes.bool
   };
 
   static defaultProps = {
     buttonsHeight: 'small',
     disableCancel: false,
     disableConfirmation: false,
-    width: '600px'
+    width: '600px',
+    noBodyPadding: false
   };
 
   render() {
@@ -49,13 +51,14 @@ export default class MessageBoxFunctionalLayout extends WixComponent {
       closeButton,
       disableConfirmation,
       disableCancel,
-      width
+      width,
+      noBodyPadding
     } = this.props;
 
     return (
       <div style={{width}}>
         <HeaderLayout title={title} onCancel={onClose ? onClose : onCancel} theme={theme} closeButton={closeButton}/>
-        <div className="body">
+        <div className={`body ${noBodyPadding ? 'noPadding' : 'withPadding'}`} data-hook="message-box-body">
           {children}
         </div>
         {
