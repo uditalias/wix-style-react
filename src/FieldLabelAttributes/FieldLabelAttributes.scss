@@ -11,6 +11,11 @@
     margin-left: 6px;
     color: $B20;
   }
+  &.left {
+    &:before {
+      margin-left: 0;
+    }
+  }
 }
 
 .icon {

@@ -2,4 +2,18 @@
 
 .label {
 	margin-bottom: 6px;
+
+	label {
+		margin-left: 6px;
+	}
+
+	>:first-child {
+		margin-left: 0;
+	}
+
+	div:first-child {
+		:first-child {
+			margin-left: 0;
+		}
+	}
 }

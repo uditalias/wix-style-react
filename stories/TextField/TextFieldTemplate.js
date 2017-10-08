@@ -14,7 +14,8 @@ export default class Form extends Component {
     label: PropTypes.object,
     input: PropTypes.object,
     required: PropTypes.bool,
-    info: PropTypes.string
+    info: PropTypes.string,
+    labelAttributesAlignment: PropTypes.string
   };
 
   componentDidUpdate(props) {
@@ -27,7 +28,7 @@ export default class Form extends Component {
 
   getComponent() {
     return (
-      <TextField required={this.props.required} info={this.props.info}>
+      <TextField required={this.props.required} info={this.props.info} labelAttributesAlignment={this.props.labelAttributesAlignment}>
         {this.props.withLabel ? <Label for="firstName" {...this.props.label}/> : null}
         <Input id="firstName" {...this.props.input}/>
       </TextField>

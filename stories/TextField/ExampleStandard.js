@@ -13,7 +13,7 @@ class ExampleStandard extends Component {
 
   static propTypes = {
     onChange: PropTypes.func
-  }
+  };
 
   state = {
     withLabel: true,
@@ -32,8 +32,9 @@ class ExampleStandard extends Component {
       disabled: false
     },
     required: false,
-    info: ''
-  }
+    info: '',
+    labelAttributesAlignment: 'right'
+  };
 
   setComponentState(componentName, obj) {
     this.setState(prevState => {
@@ -119,6 +120,20 @@ class ExampleStandard extends Component {
                 value={this.state.info}
                 onChange={e => this.setState({info: e.target.value})}
                 />
+            </div>
+          </div>
+
+          <div className={styles.option}>
+            <Label>Label Attributes Alignment</Label>
+            <div className={styles.flex}>
+              <RadioGroup
+                display="horizontal"
+                value={this.state.labelAttributesAlignment}
+                onChange={labelAttributesAlignment => this.setState({labelAttributesAlignment})}
+                >
+                <RadioGroup.Radio value="left">Left</RadioGroup.Radio>
+                <RadioGroup.Radio value="right">Right</RadioGroup.Radio>
+              </RadioGroup>
             </div>
           </div>
 
