@@ -8,9 +8,7 @@ import styles from './DrillView.scss';
 class SideMenuDrill extends WixComponent {
   constructor(props) {
     super(props);
-    this.slideInDirection = SlideDirection.left;
-    this.slideOutDirection = SlideDirection.right;
-
+    this.setSlideDirection(props);
     const state = {
       menus: {},
       currentMenuId: this.props.menuKey,
@@ -23,11 +21,9 @@ class SideMenuDrill extends WixComponent {
     this.state = state;
   }
 
-  componentDidMount() {
-    if (document.querySelector('.rtl')) {
-      this.slideInDirection = SlideDirection.right;
-      this.slideOutDirection = SlideDirection.left;
-    }
+  setSlideDirection(props) {
+    this.slideInDirection = props.isRtl ? SlideDirection.right : SlideDirection.left;
+    this.slideOutDirection = props.isRtl ? SlideDirection.left : SlideDirection.right;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -35,6 +31,7 @@ class SideMenuDrill extends WixComponent {
       menus: {}
     };
 
+    this.setSlideDirection(nextProps);
     this.processChildren({props: nextProps}, state);
     this.setState(state);
   }
@@ -223,13 +220,15 @@ class SideMenuDrill extends WixComponent {
 
 SideMenuDrill.defaultProps = {
   inFlex: false,
-  menuKey: 'root'
+  menuKey: 'root',
+  inRtl: false
 };
 
 SideMenuDrill.propTypes = {
   inFlex: bool,
   menuKey: string,
-  children: node
+  children: node,
+  inRtl: bool
 };
 
 export default SideMenuDrill;
