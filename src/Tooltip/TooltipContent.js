@@ -62,7 +62,7 @@ class TooltipContent extends Component {
      * Specifies the font color of the content of the tooltip
      */
     color: PropTypes.string,
-    lineHeight: PropTypes.string,
+    lineHeight: PropTypes.string
   };
 
   static defaultProps = {
@@ -70,7 +70,7 @@ class TooltipContent extends Component {
     arrowPlacement: 'bottom',
     maxWidth: '378px',
     size: 'normal',
-    textAlign: 'center',
+    textAlign: 'center'
   };
 
   render() {
@@ -89,22 +89,14 @@ class TooltipContent extends Component {
       maxWidth,
       padding,
       color,
-      lineHeight,
+      lineHeight
     } = this.props;
-
-    if (color) {
-      styles[theme].color = color;
-    }
-
-    if (lineHeight) {
-      styles[theme].lineHeight = lineHeight;
-    }
 
     return (
       <div className={styles.root} style={style} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
         <div className={styles.fadeIn}>
           <div className={classnames({[styles[`bounce-on-${arrowPlacement}`]]: bounce})}>
-            <div ref={ref => this.tooltip = ref} className={classnames(styles.tooltip, styles[theme], styles[size])} style={{maxWidth, textAlign, padding}}>
+            <div ref={ref => this.tooltip = ref} className={classnames(styles.tooltip, styles[theme], styles[size])} style={{maxWidth, textAlign, padding, lineHeight, color}}>
               <div>{children}</div>
               <div className={classnames(styles.arrow, styles[arrowPlacement])} style={arrowStyle}/>
             </div>

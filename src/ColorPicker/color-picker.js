@@ -1,6 +1,6 @@
 import React from 'react';
 import color from 'color';
-import {object, string, func, bool, oneOfType} from 'prop-types';
+import {object, string, func, bool, oneOfType, node} from 'prop-types';
 
 import WixComponent from '../BaseComponents/WixComponent';
 import ColorPickerHsb from './color-picker-hsb';
@@ -27,18 +27,26 @@ export default class ColorPicker extends WixComponent {
   static propTypes = {
     /** Current color, can be given in `string` or `object` format [https://github.com/Qix-/color](https://github.com/Qix-/color) */
     value: oneOfType([string, object]).isRequired,
+
     /** Should current/previous color be displayed */
     showHistory: bool,
+
     /** Should `HEX`/`RGB`/`HSB` converter tabs be displayed */
     showConverter: bool,
-    /** Should color input (in `HEX` mode) be displayed */
+
+    /** Should color input (in `HEX` mode) be displayed. This is relevant only if `showConverter` is `true` */
     showInput: bool,
-    /** Handle color change event */
+
+    /** Handle color change event. */
     onChange: func.isRequired,
+
     /** Handle cancel button click */
     onCancel: func.isRequired,
+
     /** Handle confirm button click */
-    onConfirm: func.isRequired
+    onConfirm: func.isRequired,
+    /** Children would be rendered above action buttons */
+    children: node
   }
 
   static defaultProps = {
@@ -59,7 +67,7 @@ export default class ColorPicker extends WixComponent {
   }
 
   render() {
-    const {showHistory, showInput, showConverter} = this.props;
+    const {showHistory, showInput, showConverter, children} = this.props;
     const {current, previous} = this.state;
     return (
       <div className={css.root}>
@@ -67,6 +75,9 @@ export default class ColorPicker extends WixComponent {
         <ColorPickerHue current={current} onChange={this.change}/>
         <ColorPickerHistory show={showHistory} current={current} previous={previous}/>
         <ColorPickerConverter showConverter={showConverter} showInput={showInput} current={current} onChange={this.change}/>
+        {children && (
+          <div className={css.children}>{children}</div>
+        )}
         <ColorPickerActions onConfirm={this.confirm} onCancel={this.cancel}/>
       </div>
     );

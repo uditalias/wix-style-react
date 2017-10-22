@@ -193,7 +193,7 @@ describe('DropdownLayout', () => {
 
   it('should hover when mouse enter and unhover when mouse leave when overrideStyle is true', () => {
     const options = [
-      {id: 0, value: 'Option 1', overrideStyle: true},
+      {id: 0, value: 'Option 1', overrideStyle: true}
     ];
 
     const driver = createDriver(<DropdownLayout visible options={options}/>);
@@ -209,7 +209,7 @@ describe('DropdownLayout', () => {
   it('should select the chosen value when overrideStyle is true', () => {
     const selectedId = 0;
     const options = [
-      {id: 0, value: 'Option 1', overrideStyle: true},
+      {id: 0, value: 'Option 1', overrideStyle: true}
     ];
     const driver = createDriver(<DropdownLayout visible options={options} selectedId={selectedId}/>);
 
@@ -225,6 +225,58 @@ describe('DropdownLayout', () => {
   it('should contain pointer arrow when withArrow property is true', () => {
     const driver = createDriver(<DropdownLayout visible withArrow options={options}/>);
     expect(driver.hasTopArrow()).toBeTruthy();
+  });
+
+  it('should support mouse events', () => {
+    const onMouseEnter = jest.fn();
+    const onMouseLeave = jest.fn();
+    const driver = createDriver(
+      <DropdownLayout visible options={options} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}/>
+    );
+    driver.mouseEnter();
+    expect(onMouseEnter).toBeCalled();
+    expect(onMouseLeave).not.toBeCalled();
+
+    driver.mouseLeave();
+    expect(onMouseLeave).toBeCalled();
+  });
+
+  describe('itemHeight prop', () => {
+    it('should be small by default', () => {
+      const driver = createDriver(<DropdownLayout visible options={options}/>);
+      expect(driver.isOptionHeightSmall(0)).toBe(true);
+    });
+
+    it('should be small', () => {
+      const driver = createDriver(<DropdownLayout visible options={options} itemHeight="small"/>);
+      expect(driver.isOptionHeightSmall(0)).toBe(true);
+    });
+
+    it('should be big', () => {
+      const driver = createDriver(<DropdownLayout visible options={options} itemHeight="big"/>);
+      expect(driver.isOptionHeightBig(0)).toBe(true);
+    });
+  });
+
+  describe('options that are links', () => {
+    it('should not be link by default', () => {
+      const driver = createDriver(<DropdownLayout visible options={options}/>);
+      expect(driver.isLinkOption(0)).toBe(false);
+    });
+
+    it('should be a link option', () => {
+      const driver = createDriver(<DropdownLayout visible options={options.map(opt => ({...opt, linkTo: 'http://wix.com'}))}/>);
+      expect(driver.isLinkOption(0)).toBe(true);
+    });
+  });
+
+  describe('theme support', () => {
+    it('should allow setting a custom theme', () => {
+      const props = {dataHook: 'myDataHook', theme: 'material', options};
+      const wrapper = mount(<DropdownLayout {...props}/>);
+      const testkit = enzymeDropdownLayoutTestkitFactory({wrapper, dataHook: props.dataHook});
+      expect(testkit.hasTheme('material')).toBe(true);
+    });
   });
 
   describe('testkit', () => {
@@ -247,14 +299,4 @@ describe('DropdownLayout', () => {
       expect(dropdownLayoutTestkit.optionsLength()).toBe(6);
     });
   });
-
-  describe('theme support', () => {
-    it('should allow setting a custom theme', () => {
-      const props = {dataHook: 'myDataHook', theme: 'material', options};
-      const wrapper = mount(<DropdownLayout {...props}/>);
-      const testkit = enzymeDropdownLayoutTestkitFactory({wrapper, dataHook: props.dataHook});
-      expect(testkit.hasTheme('material')).toBe(true);
-    });
-  });
-
 });

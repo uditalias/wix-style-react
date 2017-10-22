@@ -2,12 +2,12 @@ import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
+import {isClassExists} from '../../test/utils';
 import styles from './Tag.st.css';
 import {hasCssState} from '../stylable-has-css-state';
 
 const tagDriverFactory = ({element, wrapper, component}) => {
 
-  const isClassExists = (element, className) => (element && element.className.indexOf(className) !== -1);
   const removeButton = $(element).find('a')[0];
   const thumb = $(element).find('span')[0];
   const contentWithoutThumb = $(element).find('span')[0];

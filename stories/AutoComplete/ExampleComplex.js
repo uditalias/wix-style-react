@@ -14,7 +14,7 @@ const options = [
   {id: 1, value: <div style={{color: 'red'}}>test</div>, v: 'S'},
   {id: 2, value: 'Third option', v: 'T', disabled: true},
   {id: 3, value: 'Fifth option', v: 'Fi'},
-  {id: 4, value: 'Fourth option', v: 'Fo'},
+  {id: 4, value: 'Fourth option', v: 'Fo'}
 ];
 
 // text -> value
@@ -38,9 +38,9 @@ class ControlledAutoComplete extends React.Component {
       <AutoComplete
         ref="title"
         value={this.state.title}
-        error={true}
+        error
         placeholder={'Place holder'}
-        autoSelect={true}
+        autoSelect
         options={this.state.suggestions}
         onSelect={this.onSet}
         onManuallyInput={this.onManuallyInput}

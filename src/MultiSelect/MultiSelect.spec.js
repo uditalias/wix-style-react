@@ -29,7 +29,7 @@ describe('multiSelect', () => {
   ];
 
   it('should show dropdown when autofocus is on', () => {
-    const {inputDriver, dropdownLayoutDriver} = createDriver(<MultiSelect options={options} autoFocus={true}/>);
+    const {inputDriver, dropdownLayoutDriver} = createDriver(<MultiSelect options={options} autoFocus/>);
     expect(inputDriver.isFocus()).toBeTruthy();
     expect(dropdownLayoutDriver.isShown()).toBeTruthy();
   });
@@ -37,7 +37,7 @@ describe('multiSelect', () => {
   it('should remove options that were selected and became tags', () => {
     const tags = [{id: 'Alabama', label: 'Alabama'}];
 
-    const {driver, dropdownLayoutDriver} = createDriver(<MultiSelect options={options} autoFocus={true}/>);
+    const {driver, dropdownLayoutDriver} = createDriver(<MultiSelect options={options} autoFocus/>);
     expect(dropdownLayoutDriver.optionsLength()).toBe(options.length);
     expect(dropdownLayoutDriver.isOptionExists('Alabama')).toBeTruthy();
 
@@ -199,6 +199,28 @@ describe('multiSelect', () => {
     tagDriver.removeTag();
 
     expect(onRemoveTag).toHaveBeenCalledWith(tagId);
+  });
+
+  it('should set maxHeight to initial when no height limit introduced', () => {
+    const {driver} = createDriver(<MultiSelect options={options}/>);
+
+    expect(driver.getMaxHeight()).toBe('initial');
+  });
+
+  it('should set maxHeight when maxNumRows defined', () => {
+    const {driver} = createDriver(<MultiSelect maxNumRows={2} options={options}/>);
+
+    expect(driver.getMaxHeight()).toBe('72px');
+  });
+
+  it('should set maxHeight when maxNumRows defined (large tags)', () => {
+    const options = [
+      {value: 'Alaska', id: 'Alaska', label: 'Alaska', size: 'large'}
+    ];
+
+    const {driver} = createDriver(<MultiSelect maxNumRows={2} tags={options} options={options}/>);
+
+    expect(driver.getMaxHeight()).toBe('96px');
   });
 
   describe('testkit', () => {

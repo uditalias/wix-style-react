@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-dom/test-utils';
 import $ from 'jquery';
+import {isClassExists} from '../../test/utils';
 import styles from './ToggleSwitch.st.css';
 import {hasCssState} from '../stylable-has-css-state';
 

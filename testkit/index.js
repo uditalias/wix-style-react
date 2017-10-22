@@ -170,3 +170,18 @@ export const badgeTestkitFactory = testkitFactoryCreator(badgeDriverFactory);
 
 import datePickerDriverFactory from '../src/DatePicker/DatePicker.driver';
 export const datePickerTestkitFactory = testkitFactoryCreator(datePickerDriverFactory);
+
+import selectorDriverFactory from '../src/Selector/Selector.driver';
+export const selectorTestkitFactory = testkitFactoryCreator(selectorDriverFactory);
+
+import editableSelectorDriverFactory from '../src/EditableSelector/EditableSelector.driver';
+export const editableSelectorTestkitFactory = testkitFactoryCreator(editableSelectorDriverFactory);
+
+import editableRowDriverFactory from '../src/EditableSelector/EditableRow/EditableRow.driver';
+export const editableRowTestkitFactory = testkitFactoryCreator(editableRowDriverFactory);
+
+import modalSelectorDriverFactory from '../src/ModalSelector/ModalSelector.driver';
+export const modalSelectorTestkitFactory = testkitFactoryCreator(modalSelectorDriverFactory);
+
+import iconWithOptionsDriverFactory from '../src/IconWithOptions/IconWithOptions.driver';
+export const iconWithOptionsTestkitFactory = testkitFactoryCreator(iconWithOptionsDriverFactory);

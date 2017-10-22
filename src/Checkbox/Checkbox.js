@@ -21,15 +21,17 @@ class Checkbox extends WixComponent {
     /** used for automatic testing */
     hover: bool,
     size: oneOf(['medium', 'large']),
-    onChange: func,
-  }
+    onChange: func
+  };
 
   static defaultProps = {
     size: 'medium',
-    onChange: () => { },
-  }
+    onChange: e => {
+      e.stopPropagation();
+    }
+  };
 
-  static displayName = 'Checkbox'
+  static displayName = 'Checkbox';
 
   render() {
     const {id = uniqueId(), checked, indeterminate, disabled, hasError, hover, active, size, onChange} = this.props;

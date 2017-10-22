@@ -1,21 +1,17 @@
-import React from 'react';
-import {storiesOf} from '@storybook/react';
+import story from '../utils/Components/Story';
 
-import InteractiveCodeExample from '../utils/Components/InteractiveCodeExample';
-import AutoDocs from '../utils/Components/AutoDocs';
-import TabbedView from '../utils/Components/TabbedView';
-import ColorPicker from '!raw-loader!../../src/ColorPicker/color-picker';
+import component from 'wix-style-react/ColorPicker';
+import source from '!raw-loader!wix-style-react/ColorPicker/color-picker';
 
-import ExampleDefault from './ExampleDefault';
-
-storiesOf('Core', module)
-  .add('Color Picker', () => (
-    <TabbedView tabs={['Example', 'API']}>
-      <div>
-        <InteractiveCodeExample title="Customize <ColorPicker/>" autoExpand={false}>
-          <ExampleDefault/>
-        </InteractiveCodeExample>
-      </div>
-      <AutoDocs source={ColorPicker}/>
-    </TabbedView>
-  ));
+story({
+  category: 'Core',
+  name: 'ColorPicker',
+  source,
+  component,
+  componentProps: setProps => ({
+    onChange: value => setProps({value})
+  }),
+  exampleProps: {
+    onChange: ev => ev.hex()
+  }
+});

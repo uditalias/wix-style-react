@@ -1,11 +1,7 @@
 import React from 'react';
-import {storiesOf} from '@storybook/react';
-import Markdown from '../utils/Components/Markdown';
-import AutoDocs from '../utils/Components/AutoDocs';
-import TabbedView from '../utils/Components/TabbedView';
+import story from '../utils/Components/Story';
+
 import CodeExample from '../utils/Components/CodeExample';
-import ToggleSwitchSource from '!raw-loader!wix-style-react/ToggleSwitch/ToggleSwitch';
-import ReadmeTestKit from '../../src/ToggleSwitch/README.TESTKIT.md';
 
 import ExampleStandard from './ExampleStandard';
 import ExampleStandardRaw from '!raw-loader!./ExampleStandard';
@@ -16,27 +12,25 @@ import ExampleSizesRaw from '!raw-loader!./ExampleSizes';
 import ExampleControlled from './ExampleControlled';
 import ExampleControlledRaw from '!raw-loader!./ExampleControlled';
 
-storiesOf('Core', module)
-  .add('ToggleSwitch', () => (
-    <TabbedView tabs={['API Documentation', 'TestKits Documentation']}>
-      <div>
-        <AutoDocs source={ToggleSwitchSource}/>
+story({
+  category: 'Core',
+  componentSrcFolder: 'ToggleSwitch',
+  componentProps: (setProps, getProps) => ({
+    onChange: () => setProps({checked: !getProps().checked})
+  }),
+  examples: (
+    <div>
+      <CodeExample title="Standard" code={ExampleStandardRaw}>
+        <ExampleStandard/>
+      </CodeExample>
 
-        <h1>Usage examples</h1>
+      <CodeExample title="Sizes" code={ExampleSizesRaw}>
+        <ExampleSizes/>
+      </CodeExample>
 
-        <CodeExample title="Standard" code={ExampleStandardRaw}>
-          <ExampleStandard/>
-        </CodeExample>
-
-        <CodeExample title="Sizes" code={ExampleSizesRaw}>
-          <ExampleSizes/>
-        </CodeExample>
-
-        <CodeExample title="Controlled input" code={ExampleControlledRaw}>
-          <ExampleControlled/>
-        </CodeExample>
-      </div>
-
-      <Markdown source={ReadmeTestKit}/>
-    </TabbedView>
-  ));
+      <CodeExample title="Controlled input" code={ExampleControlledRaw}>
+        <ExampleControlled/>
+      </CodeExample>
+    </div>
+  )
+});

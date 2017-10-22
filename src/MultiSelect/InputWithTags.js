@@ -39,16 +39,24 @@ class InputWithTags extends React.Component {
       [styles.disabled]: disabled,
       [styles.error]: error,
       [styles.hasFocus]: hasFocus,
-      [styles.hasMaxHeight]: !isUndefined(this.props.maxHeight)
+      [styles.hasMaxHeight]: !isUndefined(this.props.maxHeight) || !isUndefined(this.props.maxNumRows)
     });
 
     const desiredProps = omit(['onManuallyInput', 'inputElement', 'closeOnSelect', 'predicate', 'menuArrow', 'onClickOutside', 'fixedHeader', 'fixedFooter', 'dataHook'], inputProps);
     const fontSize = (desiredProps.size && desiredProps.size === 'small') ? '14px' : '16px';
 
+    let rowMultiplier;
+    if (tags.length && tags[0].size === 'large') {
+      rowMultiplier = 48;
+    } else {
+      rowMultiplier = 36;
+    }
+    const maxHeight = this.props.maxHeight || this.props.maxNumRows * rowMultiplier || 'initial';
+
     return (
       <div
         className={className}
-        style={{maxHeight: this.props.maxHeight}}
+        style={{maxHeight}}
         onClick={() => this.handleInputFocus()}
         data-hook={this.props.dataHook}
         >
@@ -59,6 +67,7 @@ class InputWithTags extends React.Component {
           </div>
 
           <Input
+            width={this.props.width}
             ref={input => this.input = input}
             onBlur={() => this.handleInputBlur()}
             placeholder={tags.length === 0 ? placeholder : ''}
@@ -87,12 +96,19 @@ class InputWithTags extends React.Component {
   select() {
     this.input.select();
   }
+
+  clear() {
+    this.setState({
+      inputValue: ''
+    });
+  }
 }
 
 InputWithTags.propTypes = {
   onRemoveTag: PropTypes.func,
   tags: PropTypes.array,
   maxHeight: PropTypes.string,
+  maxNumRows: PropTypes.number,
   onKeyDown: PropTypes.func,
   dataHook: PropTypes.string,
   placeholder: PropTypes.string,
@@ -100,7 +116,8 @@ InputWithTags.propTypes = {
   autoFocus: PropTypes.bool,
   disabled: PropTypes.bool,
   error: PropTypes.bool,
-  delimiters: PropTypes.array
+  delimiters: PropTypes.array,
+  width: PropTypes.string
 };
 
 InputWithTags.defaultProps = {
