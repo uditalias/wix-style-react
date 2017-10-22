@@ -1,0 +1,11 @@
+@namespace "RichTextAreaToolbar";
+
+.root {
+    display: flex;
+}
+
+.button {
+    -st-states: disabled;
+    flex: 0 0 auto;
+    border-right: none;
+}

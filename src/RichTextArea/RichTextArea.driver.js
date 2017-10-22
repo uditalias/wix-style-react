@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-dom/test-utils';
-import styles from './RichTextArea.scss';
+import styles from './RichTextArea.st.css';
+import {hasCssState} from '../stylable-has-css-state';
 
 const richTextAreaDriverFactory = ({element, wrapper, component, componentInstance}) => {
   const getButtons = () => [...element.querySelectorAll('[data-hook*="rich-text-area-button"]')];
@@ -31,14 +32,14 @@ const richTextAreaDriverFactory = ({element, wrapper, component, componentInstan
 
       componentInstance.setEditorState(newEditorState);
     },
-    isErrorIndicatorVisible: () => Boolean(element.classList.contains(styles.withError)),
+    isErrorIndicatorVisible: () => hasCssState(element, styles, {withError: true}),
     isDisabled: () => (
-      getButtons().every(button => button.classList.contains(styles.disabled)) &&
-      element.childNodes[1].classList.contains(styles.disabled)
+      getButtons().every(button => hasCssState(button, styles, {disabled: true})) &&
+      hasCssState(element.childNodes[1], styles, {disabled: true})
     ),
     isImageExist: () => !!getImage(),
     isAddImageButtonExist: () => !!getButtonByType('image'),
-    isResizable: () => (getEditorWrapper().classList.contains(styles.resizable)),
+    isResizable: () => hasCssState(getEditorWrapper(), styles, {resizable: true}),
     isDefaultBlockExist: () => getDefaultBlock(),
     setProps: props => {
       const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));

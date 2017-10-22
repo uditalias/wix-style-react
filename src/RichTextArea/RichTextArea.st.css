@@ -1,0 +1,199 @@
+@namespace "RichTextArea";
+
+:import {
+    -st-from: "../common.st.css";
+    -st-named: D60, D80, B20, B30, B50, R10, GR20;
+}
+
+:import {
+    -st-from: "../Typography/typography-mixins.js";
+    -st-named: Typography;
+}
+
+:vars {
+    minWidth: 380px;
+    minHeight: 132px;
+    borderColorNormal: value(B30);
+    borderColorFocused: value(B20);
+    borderColorError: value(R10);
+    /*borderVar: 1px solid value(B30);*/
+    borderRadius: 6px;
+    paddingTop: 6px;
+    marginTop: value(paddingTop);
+    paddingLeft: 12px;
+    marginLeft: value(paddingLeft);
+    exclamationSize: 20px;
+}
+
+.root {
+    -st-states: withError, isFocused;
+    display: flex;
+    flex-direction: column;
+    min-width: value(minWidth);
+    background: value(D80);
+}
+
+ul,
+ol {
+    margin: value(marginTop) 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+ul li,
+ol li {
+    position: relative;
+    margin: 0 0 0 calc(value(marginLeft) - 1px);
+    padding-left: 10px;
+}
+
+ul li:before,
+ol li:before {
+    position: absolute;
+    content: '\2022';
+    left: calc(-1 * value(marginLeft));
+}
+
+ol li {
+    counter-increment: step-counter;
+}
+
+ol li:before {
+    content: counter(step-counter) ".";
+}
+
+.toolbar {
+    -st-states: disabled;
+    border: 1px solid value(B30);
+    border-bottom: 0;
+    border-top-left-radius: value(borderRadius);
+    border-top-right-radius: value(borderRadius);
+}
+
+.root:withError .toolbar {
+    border-color: value(borderColorError);
+}
+
+.toolbar:disabled {
+    border-color: value(D60);
+}
+
+.editorWrapper {
+    -st-states: resizable, scrollable, disabled;
+    min-height: value(minHeight);
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border: 1px solid value(B30);
+    border-bottom-left-radius: value(borderRadius);
+    border-bottom-right-radius: value(borderRadius);
+}
+
+.root:withError .editorWrapper {
+    border-color: value(borderColorError);
+    border-top-color: value(borderColorNormal);
+}
+
+.root:withError .editorWrapper:before {
+    content: '';
+    position: absolute;
+    border-top: 1px solid value(R10);
+    width: 1px;
+    left: -1px;
+    top: -1px;
+}
+
+.root:withError .editorWrapper:after {
+    content: '';
+    position: absolute;
+    border-top: 1px solid value(R10);
+    width: 1px;
+    right: -1px;
+    top: -1px;
+}
+
+.root:isFocused .editorWrapper {
+    border-color: value(borderColorFocused);
+}
+
+.root:isFocused:withError .editorWrapper {
+    border-color: value(borderColorError);
+    border-top-color: value(borderColorNormal);
+}
+
+.editorWrapper:hover {
+     background: value(B50);
+}
+
+.editorWrapper:disabled {
+    border-color: value(D60);
+}
+
+.editorWrapper:disabled:hover {
+    border-color: value(GR20);
+    background: value(D80);
+}
+
+.editor {
+    -st-states: disabled;
+    -st-mixin: Typography(t, 1);
+    flex: 1 1 auto;
+    padding: value(paddingTop) value(paddingLeft);
+    border-bottom-left-radius: value(borderRadius);
+    border-bottom-right-radius: value(borderRadius);
+}
+
+.exclamation {
+    width: value(exclamationSize);
+    height: value(exclamationSize);
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: value(R10);
+}
+
+.root:withError .exclamation {
+    display: flex;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+}
+
+.root:withError .exclamation:hover {
+    background-color: value(R10);
+}
+
+.placeholder {
+    -st-mixin: Typography(t, 2, 1);
+}
+
+.link {
+    -st-mixin: Typography(t, 1, 3);
+}
+
+.toolbar:disabled, .editorWrapper:disabled, .editorWrapper:disabled .editor {
+    -st-mixin: Typography(t, 2, 1);
+}
+
+.toolbar:disabled .link, .editorWrapper:disabled .link, .editor:disabled .link {
+    -st-mixin: Typography(t, 1, 4);
+}
+
+.editorWrapper:resizable {
+    resize: vertical;
+}
+
+.editorWrapper:scrollable {
+    overflow: auto;
+}
+
+.editorImage {
+    max-width: 100%;
+    max-height: 20em;
+}
+
+.activeEditorImage {
+    box-shadow: 0 0 0 2px blue;
+}

@@ -1,0 +1,47 @@
+@namespace "RichTextAreaButton";
+
+:import {
+    -st-from: "../common.st.css";
+    -st-named: D30, B10;
+}
+
+:import {
+    -st-from: "../Typography/typography-mixins.js";
+    -st-named: Typography;
+}
+
+.root {}
+
+.button {
+    -st-extends: root;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: value(D30);
+}
+
+.button:hover, .button:isActive {
+    color: value(B10);
+}
+
+.button:focus {
+    outline: 0;
+}
+
+.button:disabled {
+    -st-mixin: Typography(t, 2, 1);
+}
+
+.wrapper {
+    height: 40px;
+    width: 52px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tooltipContent {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}

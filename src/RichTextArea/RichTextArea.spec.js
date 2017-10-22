@@ -1,7 +1,7 @@
 import React from 'react';
 import {createDriverFactory} from '../test-common';
 import richTextAreaDriverFactory from './RichTextArea.driver';
-import RichTextArea from './RichTextArea';
+import RichTextArea from './index';
 
 const mockGetSelection = () => {
   const original = window.getSelection;

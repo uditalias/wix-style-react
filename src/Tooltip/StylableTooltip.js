@@ -190,7 +190,8 @@ class Tooltip extends WixComponent {
         onMouseEnter: this._chainCallbacks(child.props ? child.props.onMouseEnter : null, this._onMouseEnter),
         onMouseLeave: this._chainCallbacks(child.props ? child.props.onMouseLeave : null, this._onMouseLeave),
         onFocus: this._chainCallbacks(child.props ? child.props.onFocus : null, this._onFocus),
-        onBlur: this._chainCallbacks(child.props ? child.props.onBlur : null, this._onBlur)
+        onBlur: this._chainCallbacks(child.props ? child.props.onBlur : null, this._onBlur),
+        className: child.props ? `${this.props.className} ${child.props.className}` : undefined
       });
     } else {
       return (<div/>);
