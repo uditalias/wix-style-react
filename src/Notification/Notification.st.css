@@ -123,39 +123,39 @@
     opacity: 1;
 }
 
-.notificationAnimationLeave {
+.notificationAnimationExit {
     max-height: 500px;
 }
 
-.notificationAnimationLeave .labelWrapper {
+.notificationAnimationExit .labelWrapper {
     opacity: 1;
     margin-top: 0;
 }
 
-.notificationAnimationLeave .ctaButtonWrapper {
+.notificationAnimationExit .ctaButtonWrapper {
     opacity: 1;
 }
 
-.notificationAnimationLeave .closeButtonWrapper {
+.notificationAnimationExit .closeButtonWrapper {
     opacity: 1;
 }
 
-.notificationAnimationLeaveActive {
+.notificationAnimationExitActive {
     transition: all 0.25s value(easeInOutSine) 0.1s;
     max-height: 0;
 }
 
-.notificationAnimationLeaveActive .labelWrapper {
+.notificationAnimationExitActive .labelWrapper {
     transition: all 0.25s value(easeInOutSine);
     opacity: 0.5;
     margin-top: -70px;
 }
 
-.notificationAnimationLeaveActive .ctaButtonWrapper {
+.notificationAnimationExitActive .ctaButtonWrapper {
     transition: all 0.12s value(easeInOutSine);
     opacity: 0;
 }
 
-.notificationAnimationLeaveActive .closeButtonWrapper {
+.notificationAnimationExitActive .closeButtonWrapper {
     opacity: 0;
 }

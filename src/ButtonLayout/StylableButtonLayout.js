@@ -5,6 +5,9 @@ import classNames from 'classnames';
 import {stylable} from 'wix-react-tools';
 import styles from './ButtonLayout.st.css';
 
+/**
+  * General Buttons
+  */
 const ButtonLayout = props => {
   const {theme, hover, active, disabled, height, children, matchParent} = props;
 
@@ -52,9 +55,15 @@ ButtonLayout.propTypes = {
   active: bool,
   children: any,
   disabled: bool,
+
+  /** The size of the button */
   height: oneOf(['small', 'medium', 'large', 'x-large']),
   hover: bool,
+
+  /** When true the button will match its parent width */
   matchParent: bool,
+
+  /** The theme of the button */
   theme: oneOf([
     'transparent',
     'fullred',

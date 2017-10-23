@@ -12,7 +12,7 @@ export default class ButtonSelection extends WixComponent {
   static propTypes = {
     buttonsNames: arrayOf(string.isRequired).isRequired,
     value: string,
-    onChange: func.isRequired,
+    onChange: func.isRequired
   }
 
   componentWillMount() {

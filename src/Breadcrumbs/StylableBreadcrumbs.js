@@ -7,9 +7,19 @@ import BreadcrumbsPathFactory from './BreadcrumbsPathFactory';
 import {stylable} from 'wix-react-tools';
 import styles from './Breadcrumbs.st.css';
 
+/**
+ * a way to visualise current navigation path
+ */
 @stylable(styles)
 export default class Breadcrumbs extends WixComponent {
   static propTypes = {
+    /**
+      * * __id__ - Specifies the item id
+      * * __link__ - Optional link to be called on click
+      * * __value__ - Value to be shown on breadcrumb
+      * * __disabled__ - if this value is disabled
+      * * __customElement__ - A custom item which will be rendered
+      */
     items: arrayOf(shape({
       id: oneOfType([
         string,
@@ -21,7 +31,7 @@ export default class Breadcrumbs extends WixComponent {
       ]).isRequired,
       link: string,
       customElement: any,
-      disabled: bool,
+      disabled: bool
     })).isRequired,
     onClick: func,
     activeId: oneOfType([
@@ -29,12 +39,12 @@ export default class Breadcrumbs extends WixComponent {
       number
     ]),
     size: oneOf(['medium', 'large']),
-    theme: oneOf(['onWhiteBackground', 'onGrayBackground', 'onDarkBackground']),
+    theme: oneOf(['onWhiteBackground', 'onGrayBackground', 'onDarkBackground'])
   };
 
   static defaultProps = {
     size: 'medium',
-    theme: 'onGrayBackground',
+    theme: 'onGrayBackground'
   };
 
   handleBreadcrumbClick = item =>
