@@ -1,10 +1,10 @@
 import isUndefined from 'lodash/isUndefined';
 import InputWithOptions from '../InputWithOptions';
 
-import {onRootElement} from 'wix-react-tools/dist/src/react-decor/react-decor-class';
+import {onRootElement} from 'wix-react-tools';
 import styles from './Dropdown.st.css';
 
-@onRootElement((instance, props, args) => {
+@onRootElement((props, args) => {
   const origClassName = args.elementProps.className;
   args.elementProps.className = styles.root;
   if (origClassName) {
@@ -58,9 +58,7 @@ export default class Dropdown extends InputWithOptions {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.selectedId !== nextProps.selectedId) {
-      this.update(nextProps, {isFirstTime: false});
-    }
+    this.update(nextProps, {isFirstTime: false});
   }
 
   dropdownAdditionalProps() {

@@ -39,7 +39,7 @@ const resolveHOC = (path, types) => {
 
   if (types.CallExpression.check(node) && !isReactCreateClassCall(path)) {
     if (node.arguments.length) {
-      return resolveHOC(path.get('arguments', node.arguments.length - 1));
+      return resolveHOC(path.get('arguments', node.arguments.length - 1), types);
     }
   }
 
