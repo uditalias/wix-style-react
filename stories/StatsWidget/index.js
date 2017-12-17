@@ -16,6 +16,10 @@ import ExampleStatsWidgetWithPercentsRaw from '!raw-loader!./ExampleStatsWidgetW
 
 import ExampleStatsWidgetWithFilters from './ExampleStatsWidgetWithFilters';
 import ExampleStatsWidgetWithFiltersRaw from '!raw-loader!./ExampleStatsWidgetWithFilters';
+
+import ExampleStatsWidgetLoading from './ExampleStatsWidgetLoading';
+import ExampleStatsWidgetLoadingRaw from '!raw-loader!./ExampleStatsWidgetLoading';
+
 import ReadmeTestkit from '../../src/StatsWidget/README.TESTKIT.md';
 
 
@@ -36,6 +40,9 @@ storiesOf('Core', module)
         </CodeExample>
         <CodeExample title="Stats widget example with filters" code={ExampleStatsWidgetWithFiltersRaw}>
           <ExampleStatsWidgetWithFilters/>
+        </CodeExample>
+        <CodeExample title="Stats widget example loading state" code={ExampleStatsWidgetLoadingRaw}>
+          <ExampleStatsWidgetLoading/>
         </CodeExample>
       </div>
 

@@ -12,7 +12,6 @@
 | getStatisticPercentValue| index | number | returns percents value of statistics with index passed as param |
 | getStatisticPercentClass| index | string | returns all classes of percent wrapper element of statistics with index passed as param |
 | selectFilter| dataHook, index| - | clicks on filter |
-| getFilterDriver| dataHook | - | return relevant driver for filter |
 | exists| - | bool | fulfilled if element in the DOM |
 
 ## StatsWidget Protractor TestKit API

@@ -4,16 +4,17 @@ import dropdownDriverFactory from '../Dropdown/Dropdown.driver';
 import headerDriverFactory from '../Card/Header/Header.driver';
 
 const statsWidgetDriverFactory = ({element, wrapper, component}) => {
-  const getStatistic = index => element.querySelector('[data-hook="stats-widget-content-wrapper"]').childNodes[index];
-
-  const headerElement = element.querySelector(`[data-hook="stats-widget-title"]`);
-
-  const headerDriver = headerDriverFactory({wrapper: element, element: headerElement});
+  const getAllStatistics = () => element.querySelector('[data-hook="stats-widget-content-wrapper"]');
+  const getStatistic = index => getAllStatistics().childNodes[index];
 
   const driver = {
     exists: () => !!element,
 
-    titleText: () => headerDriver.title(),
+    titleText: () => {
+      const headerElement = element.querySelector(`[data-hook="stats-widget-title"]`);
+      const headerDriver = headerDriverFactory({wrapper: element, element: headerElement});
+      return headerDriver.title();
+    },
 
     getStatisticTitle: index => getStatistic(index).querySelector('[data-hook="statistics-item-title"]').textContent,
 
@@ -27,6 +28,10 @@ const statsWidgetDriverFactory = ({element, wrapper, component}) => {
       const dropdownElement = element.querySelector(`[data-hook="${dataHook}"]`);
       return dropdownDriverFactory({wrapper: element, element: dropdownElement});
     },
+
+    doesLoaderExist: () => !!element.querySelector(`[data-hook="stats-widget-loader"]`),
+
+    doesStatisticsExist: () => !!getAllStatistics(),
 
     setProps: props => {
       const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));

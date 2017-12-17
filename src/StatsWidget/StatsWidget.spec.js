@@ -78,6 +78,8 @@ describe('StatsWidget', () => {
     createComponent({title, statistics});
     expect(driver.getStatisticTitle(0)).toBe(statistics[0].title);
     expect(driver.getStatisticSubTitle(0)).toBe(statistics[0].subtitle);
+    expect(driver.doesStatisticsExist()).toBe(true);
+    expect(driver.doesLoaderExist()).toBe(false);
   });
 
   it('should show abs of percentage', () => {
@@ -133,6 +135,13 @@ describe('StatsWidget', () => {
     createComponent({title, statistics: wrongStatistics});
 
     expect(stub).toHaveBeenCalledWith(PageRequiredChildrenArrayError);
+  });
+
+  it('should show loader while data is loading', () => {
+    const isLoading = true;
+    createComponent({title, statistics, isLoading});
+    expect(driver.doesStatisticsExist()).toBe(false);
+    expect(driver.doesLoaderExist()).toBe(true);
   });
 
   describe('testkit', () => {

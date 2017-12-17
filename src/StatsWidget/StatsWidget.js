@@ -7,6 +7,7 @@ import Text from '../Text';
 import classnames from 'classnames';
 import {ArrowVertical} from '../Icons';
 import Dropdown from '../Dropdown';
+import Loader from '../Loader';
 
 /**
  * Component for app widget in Business Manager
@@ -22,6 +23,8 @@ class StatsWidget extends WixComponent {
       subtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
       percent: PropTypes.number
     })).isRequired,
+    /** Is content loading */
+    isLoading: PropTypes.bool,
     /** Filters for statistics (will be shown in right top corner) Accepts array of  <StatsWidget.Filter> which accepts all dropdown properties*/
     children: PropTypes.arrayOf((propValue, key) => {
       if (!propValue || propValue.length > 3) {
@@ -49,7 +52,7 @@ class StatsWidget extends WixComponent {
       <Text dataHook="statistics-item-subtitle" appearance="H3">
         {statistics.subtitle}
       </Text>
-      { typeof (statistics.percent) !== 'undefined' && this.renderPercentage(statistics.percent)}
+      {typeof (statistics.percent) !== 'undefined' && this.renderPercentage(statistics.percent)}
     </div>);
   }
 
@@ -57,9 +60,8 @@ class StatsWidget extends WixComponent {
     return (<div className={styles.filtersWrapper}>{filters}</div>);
   }
 
-  render() {
+  renderCartContent() {
     const {title, statistics, children} = this.props;
-
     return (
       <Card>
         <Card.Header dataHook="stats-widget-title" title={title} suffix={this.renderFilters(children)}/>
@@ -69,6 +71,27 @@ class StatsWidget extends WixComponent {
           </div>
         </Card.Content>
       </Card>
+    );
+  }
+
+  renderLoader() {
+    return (
+      <Card>
+        <Card.Content>
+          <div className={styles.loaderContainer}>
+            <Loader dataHook="stats-widget-loader"/>
+          </div>
+        </Card.Content>
+      </Card>
+    );
+  }
+
+  render() {
+    const {isLoading} = this.props;
+
+    return (<div className={styles.statsWidgetWrapper}>
+      {isLoading ? this.renderLoader() : this.renderCartContent()}
+    </div>
     );
   }
 }
