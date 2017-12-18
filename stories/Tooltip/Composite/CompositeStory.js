@@ -5,6 +5,7 @@ import InteractiveCodeExample from 'wix-storybook-utils/InteractiveCodeExample';
 import ExampleTooltip from './ExampleTooltip';
 import ExamplePopover from './ExamplePopover';
 import ExamplePopoverMenu from './ExamplePopoverMenu';
+import ExampleInfoIconWithTooltip from './ExampleInfoIconWithTooltip';
 
 storiesOf('7. Tooltips', module)
   .add('7.1. Tooltip', () => (
@@ -31,6 +32,14 @@ storiesOf('7. Tooltips', module)
         Testkits API reference
       </a>
       <ExamplePopoverMenu/>
+    </InteractiveCodeExample>
+  </div>
+))
+.add('7.4. Info Icon with tooltip', () => (
+  <div>
+    <h1>Tooltip over info</h1>
+    <InteractiveCodeExample title="<InfoIconWithTooltip/>">
+      <ExampleInfoIconWithTooltip/>
     </InteractiveCodeExample>
   </div>
 ));
