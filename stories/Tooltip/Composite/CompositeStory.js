@@ -38,7 +38,7 @@ storiesOf('7. Tooltips', module)
 .add('7.4. Info Icon with tooltip', () => (
   <div>
     <h1>Tooltip over info</h1>
-    <InteractiveCodeExample title="<InfoIconWithTooltip/>">
+    <InteractiveCodeExample title="Customize <InfoIconWithTooltip/>">
       <ExampleInfoIconWithTooltip/>
     </InteractiveCodeExample>
   </div>

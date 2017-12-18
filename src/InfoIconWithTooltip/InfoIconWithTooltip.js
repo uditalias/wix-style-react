@@ -4,8 +4,9 @@ import WixComponent from '../BaseComponents/WixComponent';
 
 import Tooltip from '../Tooltip';
 import {Info} from 'wix-style-react/Icons';
+import Icon from '../Icons/dist/Icon';
 
-const exposeApi = key => _.extend({}, Tooltip[key], Info[key]);
+const exposeApi = key => _.extend({}, Tooltip[key], {iconSize: Icon[key].size});
 
 class InfoIconWithTooltip extends WixComponent {
   static displayName = 'InfoIconWithTooltip';
@@ -15,13 +16,13 @@ class InfoIconWithTooltip extends WixComponent {
   static defaultProps = exposeApi('defaultProps');
 
   render() {
-    const propsTooltip = _.omit(this.props, _.keys(Info.propTypes));
-    const propsInfo = _.omit(this.props, _.keys(Tooltip.propTypes));
+    const tooltipProps = _.omit(this.props, ['iconSize']);
+    const {iconSize} = this.props;
 
     return (
-      <Tooltip {...propsTooltip}>
-        <span>
-          <Info {...propsInfo}/>
+      <Tooltip {...tooltipProps}>
+        <span style={{display: 'inline-block'}}>
+          <Info size={iconSize}/>
         </span>
       </Tooltip>
     );
