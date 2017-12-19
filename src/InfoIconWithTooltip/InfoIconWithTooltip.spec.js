@@ -1,6 +1,6 @@
 import React from 'react';
 import {createDriverFactory} from '../test-common';
-import InfoIconWithTooltipDriver from './InfoIconWithTooltip.driver';
+import Driver from '../Tooltip/Tooltip.driver';
 import InfoIconWithTooltip from './InfoIconWithTooltip';
 
 function resolveIn(timeout) {
@@ -13,7 +13,7 @@ function resolveIn(timeout) {
 
 describe('InfoIconWithTooltip', () => {
   const createDriver = () =>
-    createDriverFactory(InfoIconWithTooltipDriver)(
+    createDriverFactory(Driver)(
       <InfoIconWithTooltip {...{showDelay: 5, hideDelay: 5, content: 'Foo bar baz'}}/>
     );
 
