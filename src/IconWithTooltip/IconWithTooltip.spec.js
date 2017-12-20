@@ -1,7 +1,7 @@
 import React from 'react';
 import {createDriverFactory} from '../test-common';
 import Driver from '../Tooltip/Tooltip.driver';
-import InfoIconWithTooltip from './InfoIconWithTooltip';
+import IconWithTooltip from './IconWithTooltip';
 
 function resolveIn(timeout) {
   return new Promise(resolve => {
@@ -11,10 +11,10 @@ function resolveIn(timeout) {
   });
 }
 
-describe('InfoIconWithTooltip', () => {
+describe('IconWithTooltip', () => {
   const createDriver = () =>
     createDriverFactory(Driver)(
-      <InfoIconWithTooltip {...{showDelay: 5, hideDelay: 5, content: 'Foo bar baz'}}/>
+      <IconWithTooltip {...{showDelay: 5, hideDelay: 5, content: 'Foo bar baz'}}/>
     );
 
   beforeEach(() => {

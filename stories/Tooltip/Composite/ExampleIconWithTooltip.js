@@ -2,15 +2,19 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import reactElementToJSXString from 'react-element-to-jsx-string';
 
-import InfoIconWithTooltip from 'wix-style-react/InfoIconWithTooltip';
+import keys from 'lodash/keys';
+
+import IconWithTooltip from 'wix-style-react/IconWithTooltip';
+import * as Icons from 'wix-style-react/Icons';
 
 import RadioGroup from '../../../src/RadioGroup';
 import Label from '../../../src/Label';
 import Input from '../../../src/Input';
+import Dropdown from '../../../Dropdown';
 
 import styles from './Example.scss';
 
-class ExampleInfoIconWithTooltip extends Component {
+class ExampleIconWithTooltip extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired
   }
@@ -19,7 +23,8 @@ class ExampleInfoIconWithTooltip extends Component {
     placement: 'top',
     text: 'Popover appears on click',
     maxWidth: '',
-    size: '20px'
+    size: '20px',
+    icon: 'Info'
   };
 
   componentDidUpdate(props) {
@@ -38,18 +43,37 @@ class ExampleInfoIconWithTooltip extends Component {
 
   renderExampleCode() {
     return (
-      <InfoIconWithTooltip
+      <IconWithTooltip
         placement={this.state.placement}
         content={this.state.text}
         iconSize={this.state.size}
+        icon={this.state.icon}
         />
     );
+  }
+
+  get iconOptions() {
+    return keys(Icons).map(className => ({
+      id: className,
+      value: className
+    }));
   }
 
   render() {
     return (
       <form className={styles.form}>
         <div className={styles.input}>
+          <div className={styles.option}>
+            <Label>Icon</Label>
+            <div className={styles.flex}>
+              <Dropdown
+                options={this.iconOptions}
+                selectedId={this.state.icon}
+                onSelect={({value}) => this.setState({icon: value})}
+                />
+            </div>
+          </div>
+
           <div className={styles.option}>
             <Label>Icon size</Label>
             <div className={styles.flex}>
@@ -105,4 +129,4 @@ class ExampleInfoIconWithTooltip extends Component {
   }
 }
 
-export default ExampleInfoIconWithTooltip;
+export default ExampleIconWithTooltip;

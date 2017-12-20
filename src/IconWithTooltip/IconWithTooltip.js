@@ -1,28 +1,36 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import WixComponent from '../BaseComponents/WixComponent';
 
-import Tooltip from '../Tooltip';
-import {Info} from 'wix-style-react/Icons';
-import Icon from '../Icons/dist/Icon';
+import keys from 'lodash/keys';
 
+import Tooltip from '../Tooltip';
+import Icon from '../Icons/dist/Icon';
+import * as Icons from 'wix-style-react/Icons';
 
 /**
- * Info icon with tooltip
+ * Icon with tooltip
  *
  * This component is just a composit if Icon
  * and Tooltip components getting them work together.
  */
-class InfoIconWithTooltip extends WixComponent {
-  static displayName = 'InfoIconWithTooltip';
+class IconWithTooltip extends WixComponent {
+  static displayName = 'IconWithTooltip';
 
   static propTypes = {
     ...Tooltip.propTypes,
-    iconSize: Icon.propTypes.size
+    iconSize: Icon.propTypes.size,
+    icon: PropTypes.oneOf(keys(Icons))
   }
 
   static defaultProps = {
     ...Tooltip.defaultProps,
-    iconSize: Icon.defaultProps.size
+    iconSize: Icon.defaultProps.size,
+    icon: 'Info'
+  }
+
+  get iconClass() {
+    return Icons[this.props.icon] || Icons[IconWithTooltip.defaultProps.icon];
   }
 
   render() {
@@ -31,11 +39,11 @@ class InfoIconWithTooltip extends WixComponent {
     return (
       <Tooltip {...tooltipProps}>
         <span style={{display: 'inline-block'}}>
-          <Info size={iconSize}/>
+          {React.createElement(this.iconClass, {size: iconSize}, null)}
         </span>
       </Tooltip>
     );
   }
 }
 
-export default InfoIconWithTooltip;
+export default IconWithTooltip;

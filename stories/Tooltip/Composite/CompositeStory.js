@@ -5,7 +5,7 @@ import InteractiveCodeExample from 'wix-storybook-utils/InteractiveCodeExample';
 import ExampleTooltip from './ExampleTooltip';
 import ExamplePopover from './ExamplePopover';
 import ExamplePopoverMenu from './ExamplePopoverMenu';
-import ExampleInfoIconWithTooltip from './ExampleInfoIconWithTooltip';
+import ExampleIconWithTooltip from './ExampleIconWithTooltip';
 
 storiesOf('7. Tooltips', module)
   .add('7.1. Tooltip', () => (
@@ -35,11 +35,11 @@ storiesOf('7. Tooltips', module)
     </InteractiveCodeExample>
   </div>
 ))
-.add('7.4. Info Icon with tooltip', () => (
+.add('7.4. Icon with tooltip', () => (
   <div>
     <h1>Tooltip over info</h1>
-    <InteractiveCodeExample title="Customize <InfoIconWithTooltip/>">
-      <ExampleInfoIconWithTooltip/>
+    <InteractiveCodeExample title="Customize <IconWithTooltip/>">
+      <ExampleIconWithTooltip/>
     </InteractiveCodeExample>
   </div>
 ));
