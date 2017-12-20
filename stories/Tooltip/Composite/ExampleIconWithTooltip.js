@@ -11,8 +11,11 @@ import RadioGroup from '../../../src/RadioGroup';
 import Label from '../../../src/Label';
 import Input from '../../../src/Input';
 import Dropdown from '../../../Dropdown';
+import HBox from '../../../HBox';
 
 import styles from './Example.scss';
+
+const px = x => `${x}px`;
 
 class ExampleIconWithTooltip extends Component {
   static propTypes = {
@@ -21,9 +24,9 @@ class ExampleIconWithTooltip extends Component {
 
   state = {
     placement: 'top',
-    text: 'Popover appears on click',
+    text: 'Your full name will not be visible to other users',
     maxWidth: '',
-    size: '20px',
+    size: 24,
     icon: 'Info'
   };
 
@@ -42,13 +45,33 @@ class ExampleIconWithTooltip extends Component {
   }
 
   renderExampleCode() {
+    const {size, placement, text, icon} = this.state;
     return (
-      <IconWithTooltip
-        placement={this.state.placement}
-        content={this.state.text}
-        iconSize={this.state.size}
-        icon={this.state.icon}
-        />
+      <HBox
+        spacing={px(size / 2)}
+        verticalAlignment={'center'}
+        >
+        <Input
+          clearButton={false}
+          errorMessage=""
+          helpMessage=""
+          id="firstName"
+          maxLength={524288}
+          placeholder="Type in your full name"
+          roundInput={false}
+          size="normal"
+          textOverflow="clip"
+          theme="normal"
+          width=""
+          withSelection={false}
+          />
+        <IconWithTooltip
+          placement={placement}
+          content={text}
+          iconSize={size}
+          icon={icon}
+          />
+      </HBox>
     );
   }
 
@@ -82,25 +105,8 @@ class ExampleIconWithTooltip extends Component {
                 value={this.state.size}
                 onChange={size => this.setState({size})}
                 >
-                <RadioGroup.Radio value="20px">20px</RadioGroup.Radio>
-                <RadioGroup.Radio value="3em">3em</RadioGroup.Radio>
-                <RadioGroup.Radio value="10%">10%</RadioGroup.Radio>
-              </RadioGroup>
-            </div>
-          </div>
-
-          <div className={styles.option}>
-            <Label>Placement</Label>
-            <div className={styles.flex}>
-              <RadioGroup
-                display="horizontal"
-                value={this.state.placement}
-                onChange={placement => this.setState({placement})}
-                >
-                <RadioGroup.Radio value="top">Top</RadioGroup.Radio>
-                <RadioGroup.Radio value="right">Right</RadioGroup.Radio>
-                <RadioGroup.Radio value="bottom">Bottom</RadioGroup.Radio>
-                <RadioGroup.Radio value="left">Left</RadioGroup.Radio>
+                <RadioGroup.Radio value={24}>{px(24)}</RadioGroup.Radio>
+                <RadioGroup.Radio value={18}>{px(18)}</RadioGroup.Radio>
               </RadioGroup>
             </div>
           </div>
