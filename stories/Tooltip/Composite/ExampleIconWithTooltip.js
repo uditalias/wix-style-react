@@ -11,7 +11,10 @@ import RadioGroup from '../../../src/RadioGroup';
 import Label from '../../../src/Label';
 import Input from '../../../src/Input';
 import Dropdown from '../../../Dropdown';
+import Tooltip from '../../../Tooltip';
 import HBox from '../../../HBox';
+import VBox from '../../../VBox';
+import Text from '../../../Text';
 
 import styles from './Example.scss';
 
@@ -39,12 +42,12 @@ class ExampleIconWithTooltip extends Component {
   }
 
   getExampleCode() {
-    return reactElementToJSXString(this.renderExampleCode(), {
+    return reactElementToJSXString(this.renderExample(), {
       showDefaultProps: false
     });
   }
 
-  renderExampleCode() {
+  renderWith() {
     const {size, placement, text, icon} = this.state;
     return (
       <HBox
@@ -72,6 +75,54 @@ class ExampleIconWithTooltip extends Component {
           icon={icon}
           />
       </HBox>
+    );
+  }
+
+  renderWithout() {
+    const {size, placement, text, icon} = this.state;
+    return (
+      <HBox
+        spacing={px(size / 2)}
+        verticalAlignment={'center'}
+        >
+        <Input
+          clearButton={false}
+          errorMessage=""
+          helpMessage=""
+          id="firstName"
+          maxLength={524288}
+          placeholder="Type in your full name"
+          roundInput={false}
+          size="normal"
+          textOverflow="clip"
+          theme="normal"
+          width=""
+          withSelection={false}
+          />
+        <Tooltip
+          placement={placement}
+          content={text}
+          >
+          <span>
+            {React.createElement(Icons[icon], {size})}
+          </span>
+        </Tooltip>
+      </HBox>
+    );
+  }
+
+  renderExample() {
+    return (
+      <VBox spacing={25}>
+        <VBox spacing={10}>
+          <Text>Using IconWithTooltip</Text>
+          {this.renderWith()}
+        </VBox>
+        <VBox spacing={10}>
+          <Text>Using Tooltip/Icon</Text>
+          {this.renderWithout()}
+        </VBox>
+      </VBox>
     );
   }
 
@@ -125,9 +176,7 @@ class ExampleIconWithTooltip extends Component {
 
         <div className={styles.output}>
           <div className={styles.exampleWrapper}>
-            <span>
-              {this.renderExampleCode()}
-            </span>
+            {this.renderExample()}
           </div>
         </div>
       </form>
