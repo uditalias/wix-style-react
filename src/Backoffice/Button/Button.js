@@ -1,9 +1,12 @@
 import React from 'react';
 import {func, node, string} from 'prop-types';
-import styles from './Button.scss';
 import WixComponent from '../../BaseComponents/WixComponent';
 import ButtonLayout from '../../ButtonLayout/ButtonLayout';
 import omit from 'omit';
+import {isIcon} from '../ButtonLayout/themes';
+
+import BOButton from 'wix-ui-backoffice/Button';
+import ButtonIcon from 'wix-ui-backoffice/ButtonIcon';
 
 class Button extends WixComponent {
   static propTypes = {
@@ -20,44 +23,40 @@ class Button extends WixComponent {
 
   static defaultProps = ButtonLayout.defaultProps;
 
-  constructor(props) {
-    super(props);
-    this.addPrefix = this.addPrefix.bind(this);
-    this.addSuffix = this.addSuffix.bind(this);
-    this.addIcon = this.addIcon.bind(this);
-  }
-
-  addIcon(className, icon, height) {
-    const iconSize = height === 'small' ? '8px' : height === 'medium' ? '12px' : '16px';
-    const dataHook = className === styles.prefix ? 'btn-prefix' : 'btn-suffix';
-    return (
-      icon ?
-        <div className={className} data-hook={dataHook}>
-          {React.cloneElement(icon, {size: iconSize})}
-        </div> :
-        null
-    );
-  }
-
-  addPrefix() {
-    return this.addIcon(styles.prefix, this.props.prefixIcon, this.props.height);
-  }
-
-  addSuffix() {
-    return this.addIcon(styles.suffix, this.props.suffixIcon, this.props.height);
+  themesMapper = {
+    transparent: 'transparentGrey',
+    fullred: 'primaryError',
+    fullpurple: 'primaryPremium',
+    emptyred: 'secondaryError',
+    emptybluesecondary: 'secondaryStandard',
+    emptyblue: 'secondaryStandard',
+    emptypurple: 'secondaryPremium',
+    fullblue: 'primaryStandard',
+    transparentblue: 'secondaryStandard',
+    whiteblue: 'tertiaryStandard',
+    whiteblueprimary: 'primaryWhite',
+    whitebluesecondary: 'secondaryWhite',
+    'icon-greybackground': 'tertiaryStandard',
+    'icon-standard': 'primaryStandard',
+    'icon-standardsecondary': 'secondaryStandard',
+    'icon-white': 'primaryWhite',
+    'icon-whitesecondary': 'secondaryWhite'
+      //'fullgreen', // ***DEPRECATED***
+      // 'emptygreen', // ***DEPRECATED***
   }
 
   render() {
-    const {disabled, onClick, children, type, onMouseEnter, onMouseLeave} = this.props;
-    const buttonLayoutProps = omit(['id', 'onClick', 'prefixIcon', 'suffixIcon', 'type'], this.props);
+    const {theme, children} = this.props;
+    const skin = this.themesMapper[theme];
+    if (!skin) {
+      throw `"${theme}" - is not exist, check if it deprecated`;
+    }
+    const functionalityProps = omit(['children', 'theme'], this.props);
+
     return (
-      <ButtonLayout {...buttonLayoutProps}>
-        <button onClick={onClick} disabled={disabled} type={type} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-          {this.addPrefix()}
-          {children}
-          {this.addSuffix()}
-        </button>
-      </ButtonLayout>
+      isIcon(skin) ?
+        <ButtonIcon {...functionalityProps} icon={children} skin={skin}/> :
+        <BOButton {...functionalityProps} skin={skin}>{children}</BOButton>
     );
   }
 }

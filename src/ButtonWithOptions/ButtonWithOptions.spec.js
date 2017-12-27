@@ -114,7 +114,7 @@ const runButtonWithOptionsTest = driverFactory => {
       it('button should display the same value as the "selected" option', () => {
         const option = options[0];
         const props = {
-          theme: 'no-border',
+          theme: 'transparent', // 'no-border' deprecated
           dataHook: 'myDataHook',
           selectedId: option.id
         };
@@ -126,9 +126,9 @@ const runButtonWithOptionsTest = driverFactory => {
 
       it('button should display the same value as the "selected" option that has span', () => {
         const expectedValue = 'Option 4';
-        const option = options[5];
+        const option = options[3];
         const props = {
-          theme: 'no-border',
+          theme: 'transparent', // 'no-border' deprecated
           dataHook: 'myDataHook',
           selectedId: option.id
         };
