@@ -3,7 +3,7 @@ import StatsWidget from '../../src/StatsWidget';
 import styles from './ExampleStatsWidget.scss';
 
 const statistics = [{
-  title: '10$',
+  title: '$10',
   subtitle: 'Revenue'
 },
 {
@@ -11,7 +11,7 @@ const statistics = [{
   subtitle: 'Products'
 },
 {
-  title: '1',
+  title: '$1',
   subtitle: 'Transactions'
 }];
 
