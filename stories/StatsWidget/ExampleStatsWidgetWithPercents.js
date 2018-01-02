@@ -30,5 +30,5 @@ const statistics = [{
 
 export default () =>
   <div data-hook="card-example" className={styles.statsWidgetWrapper}>
-    <StatsWidget title="Let's what going on with your store" statistics={statistics}/>
+    <StatsWidget title="Let's see what's going on with your store" statistics={statistics}/>
   </div>;
