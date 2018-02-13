@@ -21,7 +21,7 @@ const githubCommentsData = {
 };
 
 const options = {
-  hostname: 'https://api.github.com',
+  hostname: 'api.github.com',
   path: githubCommentsPath,
   port: 443,
   method: 'POST',
