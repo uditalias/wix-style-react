@@ -1,10 +1,10 @@
 const {spawn} = require('child_process');
-// const https = require('https');
+const https = require('https');
 const {
   TRAVIS_REPO_SLUG: travisRepoSlug,
   STORYBOOK_DIST: storybookDist,
-  TRAVIS_PULL_REQUEST: travisPullRequest
-  // GITHUB_API_TOKEN: githubApiToken
+  TRAVIS_PULL_REQUEST: travisPullRequest,
+  GITHUB_API_TOKEN: githubApiToken
 } = process.env;
 
 
@@ -30,28 +30,32 @@ childProcess.on('close', () => {
   console.log(surgeResults);
 });
 
+const githubCommentsPath = `/repos/${travisRepoSlug}/issues/${travisPullRequest}/comments`;
+const githubCommentsData = {
+  body: `View storybook at: AA`
+};
 
-//
-// const githubCommentsPath = `/repos/${travisRepoSlug}/issues/${travisPullRequest}/comments`;
-// const githubCommentsData = {
-//   body: `View storybook at: ${deployDomain}`
-// };
-//
-// const options = {
-//   hostname: 'api.github.com',
-//   path: githubCommentsPath,
-//   port: 443,
-//   method: 'POST',
-//   data: JSON.stringify(githubCommentsData),
-//   headers: {
-//     Authorization: `token ${githubApiToken}`
-//   }
-// };
-// try {
-//   https.request(options, () => {
-//     console.log('Success');
-//   });
-// } catch (e) {
-//   console.error(e, 'ERROR IN GITHUB COMMENTS');
-// }
+const options = {
+  hostname: 'api.github.com',
+  path: githubCommentsPath,
+  port: 443,
+  method: 'POST',
+  headers: {
+    Authorization: `token ${githubApiToken}`
+  }
+};
+const req = https.request(options, (res) => {
+  console.log('statusCode:', res.statusCode);
+  console.log('headers:', res.headers);
 
+  res.on('data', (d) => {
+    process.stdout.write(d);
+  });
+});
+
+req.on('error', (e) => {
+  console.error(e);
+});
+
+req.write(JSON.stringify(githubCommentsData));
+req.end();
