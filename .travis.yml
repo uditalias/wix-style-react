@@ -5,6 +5,7 @@ language: node_js
 script:
  - npm run build
  - npm install surge
+ - npm run surge-github-autorelease
  - 'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then bash ./scripts/storybook-deploy.sh; fi'
 
 notifications:

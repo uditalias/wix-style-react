@@ -6,7 +6,7 @@ The purpose of this library is to be extended by different themes.
 - Prevent code duplication
 - Make it easy to style components to match the different designs.
 
-## Wix themes
+## Wix themesz
 The themes we currently have at Wix (WIP):
 - [Backoffice](https://github.com/wix/wix-style-react-backoffice)
 

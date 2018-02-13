@@ -26,3 +26,4 @@ else
 fi
   curl -H "Authorization: token ${GITHUB_API_TOKEN}" --request POST ${GITHUB_COMMENTS} --data '{"body":"View storybook at: '${DEPLOY_DOMAIN}'"}'
 done
+zz
