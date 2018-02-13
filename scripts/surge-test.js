@@ -14,11 +14,13 @@ const deployPath = `/home/travis/build/${repoOwner}/${repoName}/${storybookDist}
 const deploySubdomain = `pr-${travisPullRequest}`;
 const deployDomain = `https://${repoOwner}-${repoName}-${deploySubdomain}.surge.sh`;
 
-try {
-  spawn('node_modules/.bin/surge', ['--project', deployPath, '--domain', deployDomain]);
-} catch (e) {
-  console.error(e, 'ERROR IN SURGE');
-}
+const childProcess = spawn(`node ' + ${process.cwd()} + '/node_modules/.bin/surge --project ${deployPath} --domain ${deployDomain}`);
+childProcess.on('close', () => {
+  console.log('ON CLOSE');
+});
+childProcess.on('error', () => {
+  console.log('ON ERROR');
+});
 
 
 const githubCommentsPath = `/repos/${travisRepoSlug}/issues/${travisPullRequest}/comments`;
