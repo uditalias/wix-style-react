@@ -15,6 +15,9 @@ const deploySubdomain = `pr-${travisPullRequest}`;
 const deployDomain = `https://${repoOwner}-${repoName}-${deploySubdomain}.surge.sh`;
 
 const childProcess = spawn('node', [`${process.cwd()}/node_modules/.bin/surge`, '--project', deployPath, '--domain', deployDomain]);
+childProcess.on('data', data => {
+  console.log(data);
+});
 childProcess.on('error', e => {
   console.error('Error on surge process', e);
 });
