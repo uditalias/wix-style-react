@@ -13,9 +13,9 @@ const deployPath = `/home/travis/build/${repoOwner}/${repoName}/${storybookDist}
 
 const deploySubdomain = `pr-${travisPullRequest}`;
 const deployDomain = `https://${repoOwner}-${repoName}-${deploySubdomain}.surge.sh`;
-const str = `node ${process.cwd()}/node_modules/.bin/surge --project ${deployPath} --domain ${deployDomain}`;
+const str = ` --project ${deployPath} --domain ${deployDomain}`;
 
-const childProcess = spawn(str);
+const childProcess = spawn('node', [`${process.cwd()}/node_modules/.bin/surge`, '--project', deployPath, '--domain', deployDomain]);
 childProcess.on('close', () => {
   console.log(str);
   console.log('ON CLOSE');
