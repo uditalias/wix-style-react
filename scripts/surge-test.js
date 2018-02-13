@@ -13,7 +13,13 @@ const deployPath = `/home/travis/build/${repoOwner}/${repoName}/${storybookDist}
 
 const deploySubdomain = `pr-${travisPullRequest}`;
 const deployDomain = `https://${repoOwner}-${repoName}-${deploySubdomain}.surge.sh`;
-spawn('node_modules/.bin/surge', ['--project', deployPath, '--domain', deployDomain]);
+
+try {
+  spawn('node_modules/.bin/surge', ['--project', deployPath, '--domain', deployDomain]);
+} catch (e) {
+  console.error(e, 'ERROR IN SURGE');
+}
+
 
 const githubCommentsPath = `/repos/${travisRepoSlug}/issues/${travisPullRequest}/comments`;
 const githubCommentsData = {
@@ -30,7 +36,11 @@ const options = {
     Authorization: `token ${githubApiToken}`
   }
 };
+try {
+  https.request(options, () => {
+    console.log('Success');
+  });
+} catch (e) {
+  console.error(e, 'ERROR IN GITHUB COMMENTS');
+}
 
-https.request(options, () => {
-  console.log('Success');
-});
