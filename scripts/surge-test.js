@@ -41,20 +41,18 @@ const options = {
   port: 443,
   method: 'POST',
   headers: {
-    Authorization: `token ${githubApiToken}`
+    Authorization: `token ${githubApiToken}`,
+    'User-Agent': 'surge-github-autorelease'
   }
 };
-const req = https.request(options, (res) => {
-  console.log('statusCode:', res.statusCode);
-  console.log('headers:', res.headers);
-
-  res.on('data', (d) => {
+const req = https.request(options, res => {
+  res.on('data', d => {
     process.stdout.write(d);
   });
 });
 
-req.on('error', (e) => {
-  console.error(e);
+req.on('error', e => {
+  console.error('Error while posting the comment', e);
 });
 
 req.write(JSON.stringify(githubCommentsData));
