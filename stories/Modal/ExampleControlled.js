@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Modal from 'wix-style-react/Modal';
 import {Button} from 'wix-style-react/Backoffice';
 import MessageBoxFunctionalLayout from 'wix-style-react/MessageBox/MessageBoxFunctionalLayout';
+import Search from 'wix-style-react/Search';
 
 class ControlledModal extends Component {
   static propTypes = {
@@ -37,7 +38,7 @@ class ControlledModal extends Component {
             onOk={close}
             onCancel={close}
             >
-              Hello blue world!
+            <Search value={this.state.value} onChange={({target: {value}}) => this.setState({value})}/>
           </MessageBoxFunctionalLayout>
         </Modal>
       </div>
