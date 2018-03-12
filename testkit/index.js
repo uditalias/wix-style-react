@@ -209,3 +209,6 @@ export const modalSelectorLayoutTestkitFactory = testkitFactoryCreator(modalSele
 
 import sectionHelperDriverFactory from '../src/SectionHelper/SectionHelper.driver';
 export const sectionHelperTestkitFactory = testkitFactoryCreator(sectionHelperDriverFactory);
+
+import {autocompleteDriverFactory} from '../src/StylableAutocomplete/Autocomplete.driver';
+export const autocompleteTestkitFactory = testkitFactoryCreator(autocompleteDriverFactory);

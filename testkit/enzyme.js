@@ -203,3 +203,6 @@ export const modalSelectorLayoutTestkitFactory = enzymeTestkitFactoryCreator(mod
 
 import sectionHelperDriverFactory from '../src/SectionHelper/SectionHelper.driver';
 export const sectionHelperTestkitFactory = enzymeTestkitFactoryCreator(sectionHelperDriverFactory);
+
+import autocompleteDriverFactory from '../src/StylableAutocomplete/Autocomplete.driver';
+export const autocompleteTestkitFactory = enzymeTestkitFactoryCreator(autocompleteDriverFactory);
