@@ -84,7 +84,6 @@ class FieldWithSelectionComposite extends WixComponent {
             withSelection: true
           })}
           {React.cloneElement(selectionInput, {
-            noBorder: true,
             noRightBorderRadius: true,
             disabled: this.props.disabled,
             onFocus: this._onFocusLast,

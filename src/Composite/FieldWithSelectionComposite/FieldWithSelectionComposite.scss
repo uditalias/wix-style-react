@@ -5,40 +5,60 @@
   width:100%;
 }
 
+$borderColor: $B30;
+
 .inputs {
+  // Selectors
+  $inputField: ">div:first-child";
+  $selectionField: ">div:last-child";
+
   display:flex;
   align-items: center;
   background: $B50;
   box-sizing: border-box;
   border-radius: 6px;
-  border:solid 1px $B30;
+  border:solid 1px $borderColor;
 
-  >div:first-child {
+  #{$inputField} {
     flex-grow: 1;
     border-bottom-right-radius:0;
     border-top-right-radius: 0;
   }
-  &:not(.focused) {
-    >div:first-child {
+
+  &:not(.hasFocusFirst) {
+    #{$inputField} {
       border-top:none;
       border-bottom:none;
       border-left:none;
-      border-right:solid 1px $B30;
+      border-right:solid 1px $borderColor;
     }
   }
-  &.focused {
-    >div:first-child {
+
+  &:not(.hasFocusLast) {
+    #{$selectionField} { // Works for checkbox, not for dropdown
+      border: none;
+    }
+    &.inputwithoptions,
+    &.dropdown {
+      #{$selectionField}>div>div { // Dropdown's <Input> when options not opened
+        border: none;
+      }
+    }
+  }
+
+  &.hasFocusFirst {
+    #{$inputField} {
       z-index: 1;
     }
   }
   
   &.disabled {
-    >div:first-child {
+    #{$inputField} {
       border-right:solid 1px $GR20;
     }
   }
   
-  >div:last-child {
+  #{$selectionField} {
     padding: 5px 12px;
   }
 
@@ -46,13 +66,13 @@
   &.dropdown{
     background:$D80;
 
-    >div:last-child {
+    #{$selectionField} {
       padding: 0;
     }
   }
 
-  &.radiogroup {
-    >div:last-child {
+  &.radiogroup { // Deprecated
+    #{$selectionField} {
       padding: 6px 7px;
     }
   }
