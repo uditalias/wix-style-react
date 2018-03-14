@@ -1,5 +1,5 @@
 import React from 'react';
-import {Autocomplete} from 'wix-style-react/StylableAutocomplete';
+import {Autocomplete} from 'wix-style-react/Autocomplete';
 
 const style = {
   display: 'inline-block',
@@ -30,4 +30,4 @@ export default () =>
       Disabled<Autocomplete inputProps={{disabled: true}} options={options}/>
     </div>
   </div>;
-  
+

@@ -129,5 +129,5 @@ export const sliderTestkitFactory = protractorTestkitFactoryCreator(sliderDriver
 import tabsDriverFactory from '../src/Tabs/Tabs.protractor.driver';
 export const tabsTestkitFactory = protractorTestkitFactoryCreator(tabsDriverFactory);
 
-import {autocompleteDriverFactory} from '../src/StylableAutocomplete/Autocomplete.protractor.driver';
+import {autocompleteDriverFactory} from '../src/Autocomplete/Autocomplete.protractor.driver';
 export const autocompleteTestkitFactory = protractorTestkitFactoryCreator(autocompleteDriverFactory);
