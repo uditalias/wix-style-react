@@ -15,14 +15,23 @@
 
   >div:first-child {
     flex-grow: 1;
-    border-top:none;
-    border-bottom:none;
-    border-left:none;
-    border-right:solid 1px $B30;
     border-bottom-right-radius:0;
     border-top-right-radius: 0;
   }
-
+  &:not(.focused) {
+    >div:first-child {
+      border-top:none;
+      border-bottom:none;
+      border-left:none;
+      border-right:solid 1px $B30;
+    }
+  }
+  &.focused {
+    >div:first-child {
+      z-index: 1;
+    }
+  }
+  
   &.disabled {
     >div:first-child {
       border-right:solid 1px $GR20;
@@ -47,10 +56,6 @@
       padding: 6px 7px;
     }
   }
-}
-
-.focused {
-  border:solid #6eb7fd 1px;
 }
 
 .error {
