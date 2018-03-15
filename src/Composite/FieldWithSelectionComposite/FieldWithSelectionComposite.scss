@@ -7,10 +7,27 @@
 
 $borderColor: $B30;
 
+
 .inputs {
+
   // Selectors
   $inputField: ">div:first-child";
   $selectionField: ">div:last-child";
+
+  @mixin apply-to-selection-field-border-element {
+    &.checkbox {
+      #{$selectionField} { 
+        @content;
+      }
+    }
+    &.inputwithoptions,
+    &.dropdown {
+      #{$selectionField}>div>div { // Dropdown's <Input> when options not opened
+        @content;
+      }
+    } 
+  }
+  
 
   display:flex;
   align-items: center;
@@ -49,11 +66,22 @@ $borderColor: $B30;
   //   }
   // }
 
-  &.hasFocusFirst {
-    #{$inputField} {
-      z-index: 1;
+  // &.hasFocusFirst {
+  //   #{$inputField} {
+  //     z-index: 1;
+  //     border-right-width: 1px;
+  //   }
+  //   #{$selectionField} {
+  //     border-left-width: 0;
+  //   }
+  // }
+
+  &:not(.hasFocusLast) {
+    @include apply-to-selection-field-border-element {
+      border-left-width: 0;
     }
   }
+     
   
   &.disabled {
     #{$inputField} {
@@ -61,20 +89,9 @@ $borderColor: $B30;
     }
   }
   
-  &.checkbox {
-    #{$selectionField}.checkboxWrapper {
-      padding: 5px 12px;
-      border-radius: 6px;
-      border-bottom-left-radius:0;
-      border-top-left-radius: 0;
-      border:solid 1px $borderColor;
-      background: $B50;
-    }
-  }
-
   &.inputwithoptions,
   &.dropdown{
-    background:$D80;
+    // background:$D80;
 
     #{$selectionField} {
       padding: 0;
@@ -86,6 +103,15 @@ $borderColor: $B30;
       padding: 6px 7px;
     }
   }
+}
+
+.checkboxWrapper {
+  padding: 5px 12px;
+  border-radius: 6px;
+  border-bottom-left-radius:0;
+  border-top-left-radius: 0;
+  border:solid 1px $borderColor;
+  background: $B50;
 }
 
 .error {
