@@ -80,18 +80,23 @@ $borderColor: $B30;
     border-bottom-left-radius:0;
     border-top-left-radius: 0;
     box-sizing: content-box;
+
+    &.disabled {
+      background: $D70;
+    }
   }
 }
 
+// This is separately on root scope on purpose, since this could be extracted in the future 
+// as a generic border theme.
 .borderWrapper {
   border-radius: 6px;
   border:solid 1px $borderColor;
   &.error {
     border:solid $R10 1px;
   }
+  &.disabled {
+    border:solid 1px $D60;
+  }
 }
 
-.disabled {
-  border:solid 1px $GR20;
-  background: $D70;
-}
