@@ -67,6 +67,16 @@ class FieldWithSelectionComposite extends WixComponent {
       inputsWrapperClassNames[styles[selectionInputType.toLowerCase()]] = true;
     }
 
+    const clonedSelectionInput = React.cloneElement(selectionInput, {
+      noRightBorderRadius: true,
+      disabled: this.props.disabled,
+      onFocus: this._onFocusLast,
+      onBlur: this._onBlurLast
+    });
+    // const isSelectionCheckbox = selectionInputType !== 'dropdown' && selectionInputType !== 'inputwithoptions';
+    console.log('selectionInputType: ', selectionInputType);
+    const selectionInputWrapper = selectionInputType === 'Checkbox' ? <div className={styles.checkboxWrapper}>{clonedSelectionInput}</div> : clonedSelectionInput;
+
     inputsWrapperClassNames[styles.hasFocusFirst] = this.state.hasFocusFirst;
     inputsWrapperClassNames[styles.hasFocusLast] = this.state.hasFocusLast;
     inputsWrapperClassNames[styles.error] = this.props.error;
@@ -83,12 +93,7 @@ class FieldWithSelectionComposite extends WixComponent {
             disabled: this.props.disabled,
             withSelection: true
           })}
-          {React.cloneElement(selectionInput, {
-            noRightBorderRadius: true,
-            disabled: this.props.disabled,
-            onFocus: this._onFocusLast,
-            onBlur: this._onBlurLast
-          })}
+          {selectionInputWrapper}
         </div>
       </div>
     );

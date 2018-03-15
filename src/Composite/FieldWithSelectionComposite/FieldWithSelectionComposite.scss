@@ -14,37 +14,40 @@ $borderColor: $B30;
 
   display:flex;
   align-items: center;
-  background: $B50;
-  box-sizing: border-box;
-  border-radius: 6px;
-  border:solid 1px $borderColor;
+  // background: $B50;
+  // box-sizing: content-box;
+  // border-radius: 6px;
+  // border:solid 1px $borderColor;
 
   #{$inputField} {
     flex-grow: 1;
+    box-sizing: content-box;
     border-bottom-right-radius:0;
     border-top-right-radius: 0;
   }
 
-  &:not(.hasFocusFirst) {
-    #{$inputField} {
-      border-top:none;
-      border-bottom:none;
-      border-left:none;
-      border-right:solid 1px $borderColor;
-    }
-  }
+  
 
-  &:not(.hasFocusLast) {
-    #{$selectionField} { // Works for checkbox, not for dropdown
-      border: none;
-    }
-    &.inputwithoptions,
-    &.dropdown {
-      #{$selectionField}>div>div { // Dropdown's <Input> when options not opened
-        border: none;
-      }
-    }
-  }
+  // &:not(.hasFocusFirst) {
+  //   #{$inputField} {
+  //     border-top:none;
+  //     border-bottom:none;
+  //     border-left:none;
+  //     border-right:solid 1px $borderColor;
+  //   }
+  // }
+
+  // &:not(.hasFocusLast) {
+  //   #{$selectionField} { // Works for checkbox, not for dropdown
+  //     border: none;
+  //   }
+  //   &.inputwithoptions,
+  //   &.dropdown {
+  //     #{$selectionField}>div>div { // Dropdown's <Input> when options not opened
+  //       border: none;
+  //     }
+  //   }
+  // }
 
   &.hasFocusFirst {
     #{$inputField} {
@@ -58,8 +61,15 @@ $borderColor: $B30;
     }
   }
   
-  #{$selectionField} {
-    padding: 5px 12px;
+  &.checkbox {
+    #{$selectionField}.checkboxWrapper {
+      padding: 5px 12px;
+      border-radius: 6px;
+      border-bottom-left-radius:0;
+      border-top-left-radius: 0;
+      border:solid 1px $borderColor;
+      background: $B50;
+    }
   }
 
   &.inputwithoptions,
