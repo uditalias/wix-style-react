@@ -50,6 +50,7 @@ $borderColor: $B30;
       border-left-width: 0;
     }
   }
+  // TODO: extract mixin - END
      
   &.disabled {
     #{$inputField} {
@@ -59,12 +60,13 @@ $borderColor: $B30;
 }
 
 .checkboxWrapper {
+  background: $B50;
   padding: 5px 12px;
   border-radius: 6px;
   border-bottom-left-radius:0;
   border-top-left-radius: 0;
+  box-sizing: content-box;
   border:solid 1px $borderColor;
-  background: $B50;
 }
 
 .error {
