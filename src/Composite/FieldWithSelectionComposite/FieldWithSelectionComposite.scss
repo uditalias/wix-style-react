@@ -28,13 +28,8 @@ $borderColor: $B30;
     } 
   }
   
-
   display:flex;
   align-items: center;
-  // background: $B50;
-  // box-sizing: content-box;
-  // border-radius: 6px;
-  // border:solid 1px $borderColor;
 
   #{$inputField} {
     flex-grow: 1;
@@ -43,38 +38,30 @@ $borderColor: $B30;
     border-top-right-radius: 0;
   }
 
-  
+  // TODO: extract mixin
+  &.hasFocusFirst {
+    #{$inputField} {
+      z-index: 1;
+      // border-right-width: 1px;
+    }
+    // @include apply-to-selection-field-border-element {
+    //   border-left-width: 0px;
+    // }
+  }
 
-  // &:not(.hasFocusFirst) {
-  //   #{$inputField} {
-  //     border-top:none;
-  //     border-bottom:none;
-  //     border-left:none;
-  //     border-right:solid 1px $borderColor;
-  //   }
-  // }
-
-  // &:not(.hasFocusLast) {
-  //   #{$selectionField} { // Works for checkbox, not for dropdown
-  //     border: none;
-  //   }
-  //   &.inputwithoptions,
-  //   &.dropdown {
-  //     #{$selectionField}>div>div { // Dropdown's <Input> when options not opened
-  //       border: none;
-  //     }
-  //   }
-  // }
-
-  // &.hasFocusFirst {
-  //   #{$inputField} {
-  //     z-index: 1;
-  //     border-right-width: 1px;
-  //   }
+  // &.hasFocusLast {
   //   #{$selectionField} {
-  //     border-left-width: 0;
+  //     z-index: 1;
+  //   }
+  //   @include apply-to-selection-field-border-element {
+  //     border-left-width: 0px;
+  //   }
+  //   #{$inputField} {
+  //     border-right-width: 0;
   //   }
   // }
+  // TODO-END: extract mixin
+  
 
   &:not(.hasFocusLast) {
     @include apply-to-selection-field-border-element {
@@ -82,25 +69,9 @@ $borderColor: $B30;
     }
   }
      
-  
   &.disabled {
     #{$inputField} {
       border-right:solid 1px $GR20;
-    }
-  }
-  
-  &.inputwithoptions,
-  &.dropdown{
-    // background:$D80;
-
-    #{$selectionField} {
-      padding: 0;
-    }
-  }
-
-  &.radiogroup { // Deprecated
-    #{$selectionField} {
-      padding: 6px 7px;
     }
   }
 }
