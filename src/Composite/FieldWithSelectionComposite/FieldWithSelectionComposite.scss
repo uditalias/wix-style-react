@@ -73,18 +73,22 @@ $borderColor: $B30;
   }
 }
 
-.checkboxWrapper {
-  background: $B50;
-  padding: 5px 12px;
-  border-radius: 6px;
-  border-bottom-left-radius:0;
-  border-top-left-radius: 0;
-  box-sizing: content-box;
-  border:solid 1px $borderColor;
+.checkbox {
+  .borderWrapper {
+    background: $B50;
+    padding: 5px 12px;
+    border-bottom-left-radius:0;
+    border-top-left-radius: 0;
+    box-sizing: content-box;
+  }
 }
 
-.error {
-  border:solid $R10 1px;
+.borderWrapper {
+  border-radius: 6px;
+  border:solid 1px $borderColor;
+  &.error {
+    border:solid $R10 1px;
+  }
 }
 
 .disabled {
