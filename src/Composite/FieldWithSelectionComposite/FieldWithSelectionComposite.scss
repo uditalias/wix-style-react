@@ -42,26 +42,8 @@ $borderColor: $B30;
   &.hasFocusFirst {
     #{$inputField} {
       z-index: 1;
-      // border-right-width: 1px;
     }
-    // @include apply-to-selection-field-border-element {
-    //   border-left-width: 0px;
-    // }
   }
-
-  // &.hasFocusLast {
-  //   #{$selectionField} {
-  //     z-index: 1;
-  //   }
-  //   @include apply-to-selection-field-border-element {
-  //     border-left-width: 0px;
-  //   }
-  //   #{$inputField} {
-  //     border-right-width: 0;
-  //   }
-  // }
-  // TODO-END: extract mixin
-  
 
   &:not(.hasFocusLast) {
     @include apply-to-selection-field-border-element {
