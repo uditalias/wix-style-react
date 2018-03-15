@@ -42,6 +42,20 @@ $borderColor: $B30;
   &.hasFocusFirst {
     #{$inputField} {
       z-index: 1;
+      border-right-width: 1px;
+    }
+    @include apply-to-selection-field-border-element {
+      border-left-width: 0px;
+    }
+  }
+
+  &.hasFocusLast {
+    #{$inputField} {
+      border-right-width: 0px;
+    }
+    @include apply-to-selection-field-border-element {
+      z-index: 1;
+      border-left-width: 1px;
     }
   }
 
