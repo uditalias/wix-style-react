@@ -2,14 +2,14 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import reactElementToJSXString from 'react-element-to-jsx-string';
 
-import FieldWithSelection from '../../src/Composite/FieldWithSelectionComposite/FieldWithSelectionComposite';
-import Input from '../../src/Input';
-import Checkbox from '../../src/Checkbox';
-import Label from '../../src/Label';
-import Dropdown from '../../src/Dropdown';
-import RadioGroup from '../../src/RadioGroup';
+import FieldWithSelection from '../../../src/Composite/FieldWithSelectionComposite/FieldWithSelectionComposite';
+import Input from '../../../src/Input';
+import Checkbox from '../../../src/Checkbox';
+import Label from '../../../src/Label';
+import Dropdown from '../../../src/Dropdown';
+import RadioGroup from '../../../src/RadioGroup';
 
-import typography, {convertFromUxLangToCss} from '../../src/Typography';
+import typography, {convertFromUxLangToCss} from '../../../src/Typography';
 
 const options = [
   {id: 1, value: '1'},
@@ -30,12 +30,12 @@ export default class Form extends Component {
     withLabel: PropTypes.bool,
     label: PropTypes.object,
     fieldInput: PropTypes.object,
-    selectionInput: PropTypes.object,
+    selectionInput: PropTypes.string.isRequired,
     firstButtonLabel: PropTypes.string,
     secondButtonLabel: PropTypes.string,
     required: PropTypes.bool,
     info: PropTypes.string,
-    error: PropTypes.Error,
+    error: PropTypes.bool,
     disabled: PropTypes.bool
   };
 
