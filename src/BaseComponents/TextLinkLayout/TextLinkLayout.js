@@ -14,6 +14,7 @@ export default class TextLinkLayout extends WixComponent {
   static propTypes = {
     children: PropTypes.node,
     underlineStyle: PropTypes.oneOf(['always', 'hover', 'never']),
+    darkBackground: PropTypes.bool,
     theme: PropTypes.oneOf(['normal', 'darkBackground', 'greyScale']),
     size: PropTypes.oneOf(['small', 'medium']),
     display: PropTypes.oneOf(['block', 'inline-block'])
@@ -21,6 +22,7 @@ export default class TextLinkLayout extends WixComponent {
 
   static defaultProps = {
     underlineStyle: 'hover',
+    darkBackground: false, //TODO - this should be deprecated
     theme: ThemeOptions.NORMAL.type,
     size: 'medium',
     display: 'block'
@@ -42,8 +44,14 @@ export default class TextLinkLayout extends WixComponent {
   }
 
   getColor() {
-    const {theme} = this.props;
+    const {theme, darkBackground} = this.props;
     const {isHover} = this.state;
+
+    //this should be deprecated
+    if (darkBackground) {
+      return ThemeOptions.DARK_BACKGROUND.color.normal;
+    }
+
     switch (theme) {
       case ThemeOptions.DARK_BACKGROUND.type:
         return ThemeOptions.DARK_BACKGROUND.color.normal;

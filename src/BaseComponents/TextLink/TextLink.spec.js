@@ -34,6 +34,12 @@ describe('TextLink', () => {
     expect(driver.getSize()).toBe('small');
   });
 
+  //TODO - this should be deprecated
+  it('should support deprecated darkBackground', () => {
+    const driver = createDriver(<TextLink link="" darkBackground size="small"/>);
+    expect(driver.isDarkBackground()).toBeTruthy();
+  });
+
   it('should be with dark background', () => {
     const driver = createDriver(<TextLink link="" theme="darkBackground" size="small"/>);
     expect(driver.isDarkBackground()).toBeTruthy();
