@@ -10,6 +10,7 @@ import OrderedList from './../Icons/dist/components/OrderedList';
 import Link from './../Icons/dist/components/Link';
 import Image from './../Icons/dist/components/Image';
 import styles from './RichTextAreaButton.scss';
+import {FocusableParts} from '../common/FocusableParts';
 
 const buttons = {
   bold: {
@@ -49,7 +50,14 @@ const buttons = {
   }
 };
 
+
 class RichTextAreaButton extends Component {
+  constructor(props) {
+    super(props);
+    this.focusableParts = new FocusableParts(this);
+    this.state = {...this.focusableParts.getInitialState()};
+  }
+
   handleMouseDown = event => {
     event.preventDefault();
     if (!this.props.disabled) {
@@ -80,6 +88,8 @@ class RichTextAreaButton extends Component {
           className={className}
           onMouseDown={this.handleMouseDown}
           data-hook={`rich-text-area-button-${type}`}
+          {...this.focusableParts.getFocusStateAttribute()}
+          {...this.focusableParts.getEventHandlers()}
           >
           <span className={styles.wrapper}>
             {this.renderIcon()}
