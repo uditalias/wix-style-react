@@ -94,6 +94,7 @@ class ButtonWithOptions extends WixComponent {
           this.onSelect(option, isSelectedOption);
         }}
         onClickOutside={this.hideOptions}
+        selectedId={this.state.selectedId}
         />
     );
   }
