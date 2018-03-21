@@ -131,7 +131,8 @@
     ],
     "setupTestFrameworkScriptFile": "wix-ui-test-utils/jest-setup",
     "moduleNameMapper": {
-      "\\.(css|less|scss)$": "identity-obj-proxy"
+      "\\.(less|scss)$": "identity-obj-proxy",
+      "\\.(st.css)$": "wix-ui-test-utils/stylable-proxy"
     },
     "testPathIgnorePatterns": [
       "<rootDir>/dist/",
