@@ -133,7 +133,7 @@ class Tooltip extends WixComponent {
 
   onClickOutside(e) {
     if (this.props.shouldCloseOnClickOutside) {
-      this.hide(this.props);
+      this.hide();
     }
 
     this.props.onClickOutside && this.props.onClickOutside(e);
@@ -181,7 +181,7 @@ class Tooltip extends WixComponent {
   componentWillUnmount() {
     super.componentWillUnmount && super.componentWillUnmount();
     this._unmounted = true;
-    this._getContainer() && this.hide(this.props);
+    this._getContainer() && this.hide();
 
     if (this._showInterval) {
       clearInterval(this._showInterval);
@@ -191,7 +191,7 @@ class Tooltip extends WixComponent {
   componentWillMount() {
     super.componentWillMount && super.componentWillMount();
     if (this.props.active) {
-      this.show(this.props);
+      this.show();
     }
   }
 
@@ -249,7 +249,7 @@ class Tooltip extends WixComponent {
     return this.props.appendToParent ? this._childNode.parentElement : document ? document.body : null;
   }
 
-  show(props) {
+  show = (props = this.props) => {
     if (props.disabled) {
       return;
     }
@@ -292,9 +292,9 @@ class Tooltip extends WixComponent {
         });
       }, props.showDelay);
     }
-  }
+  };
 
-  hide(props) {
+  hide = (props = this.props) => {
     this.setState({hidden: true});
 
     if (this._showTimeout) {
@@ -326,13 +326,13 @@ class Tooltip extends WixComponent {
 
       this._hideTimeout = setTimeout(hideLazy, props.hideDelay);
     }
-  }
+  };
 
   _hideOrShow(event) {
     if (this.props.hideTrigger === event && !this.state.hidden) {
-      this.hide(this.props);
+      this.hide();
     } else if (this.props.showTrigger === event) {
-      this.show(this.props);
+      this.show();
     }
   }
 
@@ -451,7 +451,7 @@ class Tooltip extends WixComponent {
     if (this.props.showTrigger === 'custom') {
       return;
     }
-    this.show(this.props);
+    this.show();
   }
 
   _onTooltipContentLeave() {
